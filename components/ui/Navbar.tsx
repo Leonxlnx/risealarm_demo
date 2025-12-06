@@ -38,10 +38,9 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
           </div>
 
           <div className={`hidden md:flex items-center gap-8 text-xs font-medium text-gray-600 transition-all duration-500 ${scrolled ? 'opacity-0 w-0 overflow-hidden scale-90' : 'opacity-100 scale-100'}`}>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">Why Rise?</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">System</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">Engineering</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">Manifesto</button>
+             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">How It Works</button>
+             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">About Us</button>
+             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">FAQ</button>
           </div>
 
           <button 
@@ -58,7 +57,7 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
 export const Ticker = () => (
   <div className="bg-[#FF4F00] py-3 overflow-hidden relative z-20">
     <div className="flex gap-12 animate-marquee whitespace-nowrap font-mono text-sm font-bold uppercase tracking-widest text-black/90">
-      {Array(10).fill(" /// No Snooze Allowed /// Build Habits /// Break Inertia").map((t, i) => (
+      {Array(10).fill(" /// Wake Up. Tap In. Start Your Day. /// No Snooze Allowed /// Build Habits").map((t, i) => (
         <span key={i}>{t}</span>
       ))}
     </div>

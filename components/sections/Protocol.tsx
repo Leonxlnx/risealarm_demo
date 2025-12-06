@@ -37,20 +37,20 @@ export const ProtocolSection = () => {
   const steps = [
     { 
       id: "01", 
-      title: "Set & Lock", 
-      desc: "Once locked, the alarm cannot be turned off from the phone. No closing the app. No turning off the phone.",
+      title: "Set Your Alarm", 
+      desc: "Choose your wake-up time, sound, and days inside the Rise Alarm app.",
       icon: Smartphone 
     },
     { 
       id: "02", 
-      title: "The Rise", 
-      desc: "The alarm loops. Your only option is to get out of bed. Physically moving snaps the brain out of sleep inertia.",
+      title: "Place Your Pod", 
+      desc: "Put the Rise Alarm Pod across the room, in your bathroom, or anywhere that forces you to get up.",
       icon: MoveRight 
     },
     { 
       id: "03", 
-      title: "Scan to Stop", 
-      desc: "Walk to your bathroom or kitchen. Tap your phone on the NFC Pod to silence the noise. You are awake.",
+      title: "Get Up & Tap", 
+      desc: "When your alarm rings, the only way to stop it is to stand up, walk to the Pod, and tap your phone.",
       icon: Wifi 
     }
   ];
@@ -74,7 +74,7 @@ export const ProtocolSection = () => {
          </div>
          <div className="max-w-[1400px] mx-auto w-full px-6 mb-12 relative z-10 pl-24">
             <h2 className="text-[#FF4F00] font-mono font-bold uppercase tracking-widest text-sm mb-4">The Methodology</h2>
-            <h3 className="text-5xl md:text-7xl font-bold text-[#111] tracking-tighter">Three steps to<br/>morning dominance.</h3>
+            <h3 className="text-5xl md:text-7xl font-bold text-[#111] tracking-tighter">Three steps to<br/>wake up for real.</h3>
          </div>
          <div 
            className="flex px-6 pl-[20vw]"
@@ -114,7 +114,7 @@ export const ProtocolSection = () => {
     <section className="block lg:hidden py-24 bg-[#F2F2F0] px-6">
         <div className="mb-16">
             <h2 className="text-[#FF4F00] font-mono font-bold uppercase tracking-widest text-xs mb-4">The Methodology</h2>
-            <h3 className="text-4xl font-bold text-[#111] tracking-tighter">Three steps to<br/>dominance.</h3>
+            <h3 className="text-4xl font-bold text-[#111] tracking-tighter">Three steps to<br/>wake up for real.</h3>
         </div>
         <div className="relative space-y-12">
             <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-gray-200"></div>

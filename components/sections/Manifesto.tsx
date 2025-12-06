@@ -26,7 +26,7 @@ export const ManifestoSection = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const text = "We believe the snooze button is the single most destructive invention for human productivity. It trains your brain to procrastinate the very first task of the day.";
+  const text = "Rise is for you if you hit snooze 3+ times every morning, are tired of being tired, and are ready to take control of your wake-up. No more being late. Start your day with momentum.";
   const words = text.split(" ");
 
   return (
@@ -52,7 +52,7 @@ export const ManifestoSection = () => {
               })}
             </p>
             <p className="text-gray-400 font-mono uppercase tracking-widest text-sm">
-              — The Rise Manifesto
+              — Is Rise Right For You?
             </p>
        </div>
     </section>

@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { SectionTag } from '../ui/DesignSystem';
-import { Brain, Ban, RotateCcw } from 'lucide-react';
+import { Clock, Smartphone, BatteryWarning, XCircle } from 'lucide-react';
 
 export const ProblemSection = () => {
   return (
@@ -9,30 +9,29 @@ export const ProblemSection = () => {
       <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(45deg,#222_25%,transparent_25%,transparent_75%,#222_75%,#222),linear-gradient(45deg,#222_25%,transparent_25%,transparent_75%,#222_75%,#222)] bg-[length:40px_40px] bg-[position:0_0,20px_20px]"></div>
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16 md:mb-24">
-           <span className="font-mono text-[#FF4F00] uppercase tracking-widest text-xs font-bold mb-4 block">The Problem</span>
-           <h2 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">Sleep Inertia is <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-600">The Enemy.</span></h2>
+           <span className="font-mono text-[#FF4F00] uppercase tracking-widest text-xs font-bold mb-4 block">The Struggle</span>
+           <h2 className="text-4xl md:text-7xl font-bold mb-8 leading-tight">We All Fight the<br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-200 to-gray-600">Morning Battle.</span></h2>
            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-             Your brain craves the "Snooze". It's a biological trap. Fragmented sleep makes you 
-             groggier than if you just woke up the first time.
+             It doesn't have to stay this way. That's why we built Rise Alarm.
            </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
            {[
              { 
-               icon: <Brain size={32} className="text-[#FF4F00]" />, 
-               title: "The Brain Fog", 
-               desc: "During the first 20 mins of waking, your prefrontal cortex is offline. You make bad decisions (snoozing)." 
+               icon: <Clock size={32} className="text-[#FF4F00]" />, 
+               title: "You hit snooze… again", 
+               desc: "Every time the alarm rings, you tell yourself 'just 5 more minutes'. It's a trap." 
              },
              { 
-               icon: <RotateCcw size={32} className="text-[#FF4F00]" />, 
-               title: "The Snooze Loop", 
-               desc: "Drifting back to sleep resets your sleep cycle, causing severe grogginess known as sleep inertia." 
+               icon: <Smartphone size={32} className="text-[#FF4F00]" />, 
+               title: "You scroll in bed", 
+               desc: "Before you realize it, you've lost your morning to TikTok, Instagram, or texts." 
              },
              { 
-               icon: <Ban size={32} className="text-[#FF4F00]" />, 
-               title: "The Fix", 
-               desc: "Movement. Physically leaving the bed is the only proven way to snap the brain out of inertia instantly." 
+               icon: <XCircle size={32} className="text-[#FF4F00]" />, 
+               title: "You lose track", 
+               desc: "Now you're running behind before the day has even started. You start tired and stressed." 
              }
            ].map((item, i) => (
              <div key={i} className="bg-[#151515] p-8 md:p-10 rounded-[2rem] border border-white/5 hover:border-[#FF4F00]/30 transition-colors group">

@@ -34,20 +34,28 @@ export const FAQSection = () => {
 
   const faqs = [
     {
-       q: "Is it really cheat-proof?",
-       a: "Yes. Once the alarm locks, you cannot turn it off by closing the app, restarting the phone, or changing the time. The only way to stop the sound is to scan the NFC tag."
+       q: "What is Rise?",
+       a: "Rise is a new way to wake up; an alarm app paired with a physical Rise Pod that removes the snooze button entirely. To stop your alarm, you have to stand up and tap your phone on the Pod."
     },
     {
-       q: "Does it work on iOS & Android?",
-       a: "RiseAlarm is fully native on both platforms. We utilize Critical Alerts on iOS and Overlay permissions on Android to ensure the alarm breaks through Do Not Disturb modes."
+       q: "How does the Rise Pod work?",
+       a: "The Pod uses passive NFC technology. When your alarm goes off, the only way to turn it off is by physically tapping your phone on the Pod. No Bluetooth. No pairing. No charging."
     },
     {
-       q: "What happens if my battery dies?",
-       a: "The RiseAlarm Pod does not have a battery. It uses passive NFC technology, meaning it lasts forever and never needs charging."
+       q: "Why do I have to stand up?",
+       a: "Snoozing keeps you tired. Rise forces you to stand up, move, and interrupt your half-asleep state, which leads to more consistent mornings and better wake-ups."
     },
     {
-       q: "Can I use multiple tags?",
-       a: "Absolutely. You can set up a 'circuit'—requiring you to scan a tag in the bathroom, then the kitchen, for maximum wakefulness."
+       q: "What phones are compatible?",
+       a: "Any modern iPhone or Android device that supports NFC (basically, if you can use tap-to-pay, you can use Rise)."
+    },
+    {
+       q: "What happens if I forget my alarm?",
+       a: "Rise includes an Emergency Turnoff inside the app. It requires a short confirmation sequence but it ensures you're never stuck with the alarm going off if you're traveling."
+    },
+    {
+       q: "Do Not Disturb / Silent Mode?",
+       a: "Yes. As long as you give the app the correct permissions, Rise alarms override silent mode and DND."
     }
   ];
 
@@ -57,7 +65,7 @@ export const FAQSection = () => {
           <ScrollReveal>
              <div className="flex flex-col items-center gap-4 mb-16">
                 <span className="font-mono uppercase text-xs tracking-widest text-[#FF4F00] font-bold">Knowledge Base</span>
-                <h2 className="text-5xl font-bold text-[#111]">Common Queries</h2>
+                <h2 className="text-5xl font-bold text-[#111]">Everything you need<br/>to know.</h2>
              </div>
           </ScrollReveal>
 

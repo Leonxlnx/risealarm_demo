@@ -24,14 +24,14 @@ export const Hero = () => {
          <div className="flex flex-col items-center lg:items-start text-center lg:text-left justify-center h-full pt-20 lg:pt-0">
              <ScrollReveal>
                <h1 className="text-[18vw] sm:text-[15vw] lg:text-[6.5rem] xl:text-[7.5rem] font-bold tracking-[-0.04em] text-[#0A0A0A] leading-[0.9] mb-8 lg:mb-6 whitespace-nowrap lg:whitespace-normal">
-                 WAKE UP<br/>
-                 <span className="text-[#FF4F00]">FOR REAL.</span>
+                 WAKE UP.<br/>
+                 <span className="text-[#FF4F00]">TAP IN.</span>
                </h1>
              </ScrollReveal>
 
              <ScrollReveal delay={100}>
                <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-lg mb-10 lg:mb-10 tracking-tight mx-auto lg:mx-0">
-                 The first alarm clock that requires you to physically leave your bed. <span className="text-[#111] font-bold">No snooze. No mercy.</span>
+                 Start your day. The alarm clock that gets you out of bed. Scan your Rise Pod across the room to silence your alarm.
                </p>
              </ScrollReveal>
 
@@ -40,7 +40,7 @@ export const Hero = () => {
                   onClick={() => document.getElementById('preorder')?.scrollIntoView({ behavior: 'smooth' })}
                   className="px-10 py-5 bg-[#0A0A0A] text-white rounded-full text-base lg:text-lg font-bold flex items-center gap-4 hover:bg-[#FF4F00] transition-colors duration-300 group shadow-2xl mx-auto lg:mx-0"
                 >
-                  Get The Kit — $49
+                  Pre-Order Now — $18
                   <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
                 </button>
              </ScrollReveal>

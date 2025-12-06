@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { SectionTag, ThePod, ScrollReveal } from '../ui/DesignSystem';
-import { Smartphone, Cpu, Battery, Wifi, Layers } from 'lucide-react';
+import { Calendar, Music2, ShieldAlert, Moon } from 'lucide-react';
 
 const ScrollFeature = ({ title, spec, desc, icon: Icon, id, setActiveId }: any) => {
     const ref = useRef<HTMLDivElement>(null);
@@ -41,31 +41,31 @@ export const HardwareSection = () => {
   const features = [
      { 
         id: 'nfc',
-        icon: Wifi, 
-        title: "Passive NFC", 
-        spec: "13.56 MHz", 
-        desc: "Requires zero power. Simply tap your phone against the surface to verify wake-up." 
+        icon: Calendar, 
+        title: "Custom Schedules", 
+        spec: "Weekday / Weekend", 
+        desc: "Set different alarms for weekdays and weekends to match your unique routine. Full flexibility." 
      },
      { 
         id: 'battery',
-        icon: Battery, 
-        title: "Power Autonomous", 
-        spec: "Infinite Life", 
-        desc: "No charging required. The RiseAlarm Pod uses energy harvesting from the NFC field." 
+        icon: Music2, 
+        title: "Multiple Sounds", 
+        spec: "Energizing Audio", 
+        desc: "Choose from energizing tracks or upload your own music to wake up your way. Includes loud options." 
      },
      { 
         id: 'mount',
-        icon: Layers, 
-        title: "Mount Anywhere", 
-        spec: "3M Adhesive", 
-        desc: "Industrial grade backing allows mounting in bathrooms, kitchens, or hallways." 
+        icon: ShieldAlert, 
+        title: "No Cheating Allowed", 
+        spec: "Zero Excuses", 
+        desc: "System designed to eliminate excuses. No closing the app to stop it. You must scan the Pod." 
      },
      { 
         id: 'chip',
-        icon: Cpu, 
-        title: "Zero Latency", 
-        spec: "<100ms Response", 
-        desc: "Instant recognition. The app shuts off the alarm the exact moment contact is made." 
+        icon: Moon, 
+        title: "Dark Mode Support", 
+        spec: "Eye Friendly", 
+        desc: "Beautiful interface that's easy on the eyes whether it's day or night. Native dark mode." 
      }
   ];
 
@@ -74,8 +74,8 @@ export const HardwareSection = () => {
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="mb-16 md:mb-32 text-center md:text-left">
             <h2 className="text-4xl md:text-8xl font-bold leading-none tracking-tight mb-4">
-                Engineering<br/>Design
-                <span className="text-[#FF4F00]"> Imperative.</span>
+                Built to Beat<br/>the
+                <span className="text-[#FF4F00]"> Snooze.</span>
             </h2>
         </div>
         <div className="flex flex-col lg:flex-row gap-12">
