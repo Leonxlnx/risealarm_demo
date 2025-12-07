@@ -10,44 +10,41 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handlePreOrder = () => {
-    const preorderEl = document.getElementById('preorder');
-    if (preorderEl) {
-       preorderEl.scrollIntoView({ behavior: 'smooth' });
-    } else {
-       onViewChange('home');
-       setTimeout(() => {
-          document.getElementById('preorder')?.scrollIntoView({ behavior: 'smooth' });
-       }, 100);
-    }
-  };
-
   return (
     <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
        <nav 
          className={`
            pointer-events-auto
            transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]
-           ${scrolled ? 'w-[90%] md:w-[600px] bg-white/70 border-white/40 shadow-2xl backdrop-blur-2xl py-3' : 'w-[95%] md:w-[1200px] bg-white/30 border-white/20 shadow-sm backdrop-blur-md py-4'}
-           border rounded-full px-4 flex justify-between items-center
+           ${scrolled ? 'w-[95%] md:w-[800px] bg-white/80 border-white/40 shadow-2xl backdrop-blur-2xl py-3' : 'w-[95%] md:w-[1200px] bg-white/40 border-white/20 shadow-sm backdrop-blur-md py-4'}
+           border rounded-full px-4 md:px-6 flex justify-between items-center
          `}
        >
-          <div className="pl-4 flex items-center gap-2 cursor-pointer group" onClick={() => onViewChange('home')}>
+          <div className="flex items-center gap-2 cursor-pointer group" onClick={() => onViewChange('home')}>
              <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-8 w-auto object-contain" />
           </div>
 
-          <div className={`hidden md:flex items-center gap-8 text-xs font-medium text-gray-600 transition-all duration-500 ${scrolled ? 'opacity-0 w-0 overflow-hidden scale-90' : 'opacity-100 scale-100'}`}>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF6B00] transition-colors">How It Works</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF6B00] transition-colors">About Us</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF6B00] transition-colors">FAQ</button>
+          <div className={`hidden md:flex items-center gap-8 text-xs font-bold text-gray-600 uppercase tracking-wider transition-all duration-500 ${scrolled ? 'opacity-0 w-0 overflow-hidden scale-90' : 'opacity-100 scale-100'}`}>
+             <button onClick={() => onViewChange('shop')} className="hover:text-[#FF6B00] transition-colors">Shop</button>
+             <button onClick={() => onViewChange('how-it-works')} className="hover:text-[#FF6B00] transition-colors">How It Works</button>
+             <button onClick={() => onViewChange('about')} className="hover:text-[#FF6B00] transition-colors">About</button>
+             <button onClick={() => onViewChange('support')} className="hover:text-[#FF6B00] transition-colors">Support</button>
           </div>
 
-          <button 
-            onClick={handlePreOrder}
-            className="bg-[#111] text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#FF6B00] transition-colors shadow-lg"
-          >
-            Pre-Order
-          </button>
+          <div className="flex items-center gap-3">
+             <button 
+               onClick={() => onViewChange('download')}
+               className="hidden md:block bg-gray-100 text-[#111] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors"
+             >
+               Download App
+             </button>
+             <button 
+               onClick={() => onViewChange('shop')}
+               className="bg-[#111] text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-[#FF6B00] transition-colors shadow-lg"
+             >
+               Pre-Order
+             </button>
+          </div>
        </nav>
     </div>
   );
