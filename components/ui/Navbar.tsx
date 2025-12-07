@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
+import { ShoppingBag } from 'lucide-react';
 
-export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void }) => {
+export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: string) => void, cartCount: number }) => {
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
 
@@ -11,7 +12,6 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Logic: If not scrolled, always full width. If scrolled, only full width if hovered.
   const isExpanded = !scrolled || hovered;
 
   return (
@@ -30,13 +30,13 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
              <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain" />
           </div>
 
-          {/* Desktop Menu - Shop Removed */}
           <div 
             className={`
               hidden md:flex items-center gap-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest transition-all duration-500 overflow-hidden
               ${isExpanded ? 'opacity-100 max-w-[600px] px-4' : 'opacity-0 max-w-0 px-0'}
             `}
           >
+             <button onClick={() => onViewChange('shop')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">Shop</button>
              <button onClick={() => onViewChange('how-it-works')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">How It Works</button>
              <button onClick={() => onViewChange('about')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">About</button>
              <button onClick={() => onViewChange('support')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">FAQ</button>
@@ -49,15 +49,27 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
              >
                App
              </button>
-             {/* Use scroll to pricing logic handled in index */}
-             <button 
-               onClick={() => {
-                   document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' });
-               }}
-               className="bg-[#111] text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-[#FF6B00] transition-colors shadow-lg"
-             >
-               Pre-Order
-             </button>
+             
+             <div className="flex items-center gap-2">
+                 <button 
+                   onClick={() => onViewChange('shop')}
+                   className="bg-[#111] text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-[#FF6B00] transition-colors shadow-lg"
+                 >
+                   Pre-Order
+                 </button>
+                 
+                 <button 
+                    onClick={() => onViewChange('cart')}
+                    className="relative w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#111] hover:text-[#FF6B00] transition-colors border border-gray-100 shadow-md"
+                 >
+                    <ShoppingBag size={18} />
+                    {cartCount > 0 && (
+                        <div className="absolute -top-1 -right-1 w-4 h-4 bg-[#FF6B00] rounded-full text-[9px] text-white flex items-center justify-center font-bold">
+                            {cartCount}
+                        </div>
+                    )}
+                 </button>
+             </div>
           </div>
        </nav>
     </div>

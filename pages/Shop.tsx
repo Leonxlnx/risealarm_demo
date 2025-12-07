@@ -3,7 +3,7 @@ import React from 'react';
 import { Check, ShieldCheck, ArrowRight, Star } from 'lucide-react';
 import { ThePod } from '../components/ui/DesignSystem';
 
-export const ShopPage = ({ onCheckout }: { onCheckout: () => void }) => {
+export const ShopPage = ({ onAddToCart }: { onAddToCart: () => void }) => {
   return (
     <div className="min-h-screen bg-[#F9F9F7] pt-32 pb-24 px-6">
        <div className="max-w-[1200px] mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
@@ -55,7 +55,7 @@ export const ShopPage = ({ onCheckout }: { onCheckout: () => void }) => {
              </div>
 
              <button 
-               onClick={onCheckout}
+               onClick={onAddToCart}
                className="w-full py-5 bg-[#111] text-white rounded-full font-bold text-lg hover:bg-[#FF6B00] transition-colors flex items-center justify-center gap-3 group shadow-xl"
              >
                 Add to Cart — $25.00

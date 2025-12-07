@@ -18,16 +18,22 @@ import { DownloadPage } from './pages/Download';
 import { SupportPage } from './pages/Support';
 import { HowItWorksPage } from './pages/HowItWorks';
 import { LegalHub } from './pages/StaticPages';
-import { CheckoutPage } from './pages/Checkout';
+import { ShopPage } from './pages/Shop';
+import { CartPage } from './pages/Cart';
 
 const App = () => {
   const [currentView, setCurrentView] = useState('home');
+  const [cartCount, setCartCount] = useState(0);
 
-  // useLayoutEffect fires synchronously after all DOM mutations.
-  // This ensures the scroll happens BEFORE the user sees the new page rendered at the bottom.
+  // FORCED SCROLL TO TOP
   useLayoutEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [currentView]);
+
+  const addToCart = () => {
+    setCartCount(prev => prev + 1);
+    setCurrentView('cart');
+  };
 
   const renderView = () => {
     switch(currentView) {
@@ -36,7 +42,8 @@ const App = () => {
       case 'support': return <SupportPage />;
       case 'how-it-works': return <HowItWorksPage />;
       case 'legal': return <LegalHub onBack={() => setCurrentView('home')} />;
-      case 'checkout': return <CheckoutPage onBack={() => setCurrentView('home')} />;
+      case 'shop': return <ShopPage onAddToCart={addToCart} />;
+      case 'cart': return <CartPage onBack={() => setCurrentView('shop')} />;
       default: return (
         <>
           <Hero />
@@ -44,8 +51,7 @@ const App = () => {
           <ProblemSection />
           <ComparisonSection />
           <TestimonialsSection />
-          <HomePricing onBuy={() => setCurrentView('checkout')} />
-          {/* SocialsSection removed as requested */}
+          <HomePricing onBuy={() => setCurrentView('shop')} />
         </>
       );
     }
@@ -53,24 +59,16 @@ const App = () => {
 
   return (
     <div className="bg-[#F9F9F7] text-[#111] min-h-screen font-sans flex flex-col">
-      <Navbar onViewChange={(view) => {
-        // Logic to handle scroll to pricing if 'shop' was still triggered somehow
-        if (view === 'shop') {
-          setCurrentView('home');
-          setTimeout(() => {
-             const pricingEl = document.getElementById('pricing');
-             if (pricingEl) pricingEl.scrollIntoView({ behavior: 'smooth' });
-          }, 100);
-        } else {
-          setCurrentView(view);
-        }
-      }} />
+      <Navbar 
+        onViewChange={setCurrentView} 
+        cartCount={cartCount} 
+      />
       
       <main className="flex-grow">
         {renderView()}
       </main>
 
-      {currentView !== 'download' && currentView !== 'checkout' && (
+      {currentView !== 'download' && currentView !== 'cart' && (
         <footer className="bg-[#111] text-white pt-24 pb-12 px-6 border-t border-white/10">
            <div className="max-w-[1400px] mx-auto flex flex-col items-center">
               <h2 className="text-[15vw] font-bold text-[#222] leading-none mb-12 select-none tracking-tighter cursor-default transition-all duration-700 hover:text-white hover:tracking-tight hover:scale-105">
@@ -118,10 +116,6 @@ style.textContent = `
   }
   .animate-marquee-reverse {
     animation: marquee 60s linear infinite reverse;
-  }
-  .pattern-grid-lg {
-    background-image: linear-gradient(currentColor 1px, transparent 1px), linear-gradient(to right, currentColor 1px, transparent 1px);
-    background-size: 20px 20px;
   }
 `;
 document.head.appendChild(style);
