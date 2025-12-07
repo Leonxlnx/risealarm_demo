@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Linkedin, MoveRight } from 'lucide-react';
+import { Linkedin, MoveRight, Instagram } from 'lucide-react';
 import { ScrollReveal } from '../components/ui/DesignSystem';
 
 const FounderCard = ({ name, title, role, linkedin }: any) => (
@@ -78,7 +78,7 @@ export const AboutPage = () => {
        </div>
 
        {/* Founders */}
-       <div className="max-w-[1000px] mx-auto px-6">
+       <div className="max-w-[1000px] mx-auto px-6 mb-32">
           <div className="text-center mb-16">
              <h2 className="text-3xl font-bold">Meet the Founders</h2>
           </div>
@@ -94,6 +94,27 @@ export const AboutPage = () => {
                 linkedin="#"
              />
           </div>
+       </div>
+
+       {/* Social Connect */}
+       <div className="max-w-[1200px] mx-auto px-6 border-t border-gray-200 pt-24 text-center">
+            <h2 className="text-2xl font-bold mb-8">Follow Our Journey</h2>
+            <div className="flex justify-center gap-6">
+                 <a href="https://www.instagram.com/risealarmapp/" target="_blank" className="flex items-center gap-3 px-6 py-4 bg-white border border-gray-200 rounded-full hover:border-[#FF6B00] transition-colors group">
+                    <Instagram className="text-gray-400 group-hover:text-[#E1306C] transition-colors" />
+                    <span className="font-bold text-sm">Instagram</span>
+                 </a>
+                 <a href="https://www.tiktok.com/@risedaily.app" target="_blank" className="flex items-center gap-3 px-6 py-4 bg-white border border-gray-200 rounded-full hover:border-black transition-colors group">
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="text-gray-400 group-hover:text-black transition-colors">
+                         <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
+                     </svg>
+                    <span className="font-bold text-sm">TikTok</span>
+                 </a>
+                 <a href="https://www.linkedin.com/company/risedailyapp/" target="_blank" className="flex items-center gap-3 px-6 py-4 bg-white border border-gray-200 rounded-full hover:border-[#0077b5] transition-colors group">
+                    <Linkedin className="text-gray-400 group-hover:text-[#0077b5] transition-colors" />
+                    <span className="font-bold text-sm">LinkedIn</span>
+                 </a>
+            </div>
        </div>
     </div>
   );
