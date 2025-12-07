@@ -18,12 +18,14 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="relative h-[100dvh] w-full flex items-center overflow-hidden bg-[#F9F9F7]">
+    <section className="relative min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#F9F9F7] pt-24 md:pt-0">
       <FluidBackground />
-      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 items-center h-full gap-4">
-         <div className="flex flex-col items-center lg:items-start text-center lg:text-left justify-center h-full pt-20 lg:pt-0">
+      <div className="relative z-10 max-w-[1200px] mx-auto w-full px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 items-center h-full gap-12 lg:gap-4">
+         
+         {/* Text Side */}
+         <div className="flex flex-col items-center lg:items-start text-center lg:text-left justify-center pt-8 lg:pt-0 order-2 lg:order-1 pb-12 lg:pb-0">
              <ScrollReveal>
-               <h1 className="text-[12vw] sm:text-[10vw] lg:text-[5.5rem] xl:text-[6.5rem] font-bold tracking-[-0.04em] text-[#0A0A0A] leading-[0.95] mb-8 lg:mb-8 whitespace-nowrap lg:whitespace-normal">
+               <h1 className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] font-bold tracking-[-0.04em] text-[#0A0A0A] leading-[0.95] mb-6 lg:mb-8">
                  WAKE UP.<br/>
                  TAP IN.<br/>
                  <span className="text-[#FF6B00]">START YOUR DAY.</span>
@@ -31,29 +33,32 @@ export const Hero = () => {
              </ScrollReveal>
 
              <ScrollReveal delay={100}>
-               <p className="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium leading-relaxed max-w-lg mb-10 lg:mb-10 tracking-tight mx-auto lg:mx-0">
+               <p className="text-base sm:text-lg md:text-xl text-gray-600 font-medium leading-relaxed max-w-md lg:max-w-lg mb-8 lg:mb-10 tracking-tight mx-auto lg:mx-0">
                  The alarm clock that gets you out of bed. Scan your Rise Pod across the room to silence your alarm.
                </p>
              </ScrollReveal>
 
              <ScrollReveal delay={200}>
-                <button 
-                  onClick={() => document.getElementById('preorder')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-10 py-5 bg-[#0A0A0A] text-white rounded-full text-base lg:text-lg font-bold flex items-center gap-4 hover:bg-[#FF6B00] transition-colors duration-300 group shadow-2xl mx-auto lg:mx-0"
-                >
-                  Pre-Order Now — $18
-                  <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                </button>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <button 
+                    onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                    className="px-8 py-4 bg-[#0A0A0A] text-white rounded-full text-sm lg:text-base font-bold flex items-center justify-center gap-3 hover:bg-[#FF6B00] transition-colors duration-300 group shadow-2xl"
+                  >
+                    Pre-Order Now — $18
+                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
              </ScrollReveal>
          </div>
 
-         <div className="hidden lg:flex justify-end items-center h-full perspective-1000">
+         {/* Visual Side */}
+         <div className="flex justify-center lg:justify-end items-center h-[40vh] lg:h-full perspective-1000 order-1 lg:order-2">
              <div 
-               className="will-change-transform relative w-full flex justify-end"
+               className="will-change-transform relative w-full flex justify-center lg:justify-end"
                style={{ transform: `rotateY(${mousePos.x}deg) rotateX(${-mousePos.y}deg)` }}
              >
-                <div className="scale-[1.1] xl:scale-[1.3] transform-gpu">
-                   <ThePod scale={1.8} className="drop-shadow-2xl" />
+                <div className="scale-[0.8] sm:scale-[0.9] lg:scale-[1.2] transform-gpu">
+                   <ThePod scale={1.5} className="drop-shadow-2xl" />
                 </div>
              </div>
          </div>

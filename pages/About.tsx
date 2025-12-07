@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Linkedin } from 'lucide-react';
+import { Linkedin, MoveRight } from 'lucide-react';
+import { ScrollReveal } from '../components/ui/DesignSystem';
 
 const FounderCard = ({ name, title, role, linkedin }: any) => (
   <div className="group relative">
@@ -24,16 +25,56 @@ const FounderCard = ({ name, title, role, linkedin }: any) => (
 export const AboutPage = () => {
   return (
     <div className="bg-[#F9F9F7] pt-32 pb-24">
-       {/* Mission */}
-       <div className="max-w-4xl mx-auto px-6 mb-32 text-center">
-          <span className="text-[#FF6B00] font-mono uppercase tracking-widest text-xs font-bold mb-6 block">Our Mission</span>
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-8">
-            Wake up on your terms. <br/>
-            <span className="text-gray-400">Stop the snooze. Start living.</span>
-          </h1>
-          <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
-             We built Rise because we were tired of being tired. The snooze button is a lie. It steals your momentum before the day even begins. Rise is the hardware-software solution designed to break the cycle.
-          </p>
+       
+       {/* Story Section */}
+       <div className="max-w-4xl mx-auto px-6 mb-32">
+          <ScrollReveal>
+            <span className="text-[#FF6B00] font-mono uppercase tracking-widest text-xs font-bold mb-6 block">About Us</span>
+            <h1 className="text-4xl md:text-6xl font-bold leading-tight mb-12">
+              The Story Behind Rise Alarm
+            </h1>
+          </ScrollReveal>
+
+          <div className="space-y-12">
+            <ScrollReveal delay={100}>
+              <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
+              <p className="text-xl text-gray-600 leading-relaxed border-l-4 border-[#FF6B00] pl-6">
+                Our mission is to end the snooze cycle for good by building tools that help people wake up on time, feel alert, and start their mornings with momentum.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={200}>
+              <h2 className="text-2xl font-bold mb-4">Our Story</h2>
+              <div className="prose prose-lg text-gray-600">
+                <p className="mb-6">
+                  Rise Alarm was founded by two college students at the <strong className="text-black">University of Tennessee</strong> who teamed up for a hackathon hosted by Half Baked Newsletter and Bolt.new. The idea was not created in a lab or a classroom. It came from a real struggle they faced every morning.
+                </p>
+                <p className="mb-6">
+                  Both founders found themselves stuck in the same cycle: hitting snooze again and again, scrolling half-awake on their phones, and rushing out the door already tired, stressed, and behind. They realized this was not just their problem. It is something almost everyone experiences.
+                </p>
+                <p className="mb-6">
+                   Science has proven that people who stand up as soon as they wake up are more energized, more focused, and more productive throughout the day. On the other hand, people who hit snooze, linger in bed, or fall back asleep slip into what scientists call sleep inertia. This state can slow down performance for hours.
+                </p>
+                <p className="mb-6">
+                   They decided to build a solution that made getting up unavoidable. They created a system that forces you to physically stand up to silence your alarm. No excuses. No snooze button. No drifting back into half-sleep. Just a simple walk to the bathroom, and suddenly their mornings were ten times better.
+                </p>
+                <p>
+                   What started as a hackathon project quickly grew into something more meaningful. It became a real fix to a real problem. It became a tool for anyone who is tired of losing their mornings and ready to start showing up as their best self.
+                </p>
+              </div>
+            </ScrollReveal>
+            
+            <ScrollReveal delay={300}>
+               <div className="bg-white p-8 rounded-3xl border border-gray-200 mt-12 flex items-center gap-6 shadow-sm">
+                  <div className="w-12 h-12 bg-[#FF6B00] rounded-full flex items-center justify-center text-white shrink-0">
+                     <MoveRight />
+                  </div>
+                  <p className="font-bold text-lg">
+                     If you've been fighting your mornings too, we built Rise Alarm for you.
+                  </p>
+               </div>
+            </ScrollReveal>
+          </div>
        </div>
 
        {/* Founders */}

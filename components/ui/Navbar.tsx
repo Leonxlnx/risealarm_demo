@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void }) => {
   const [scrolled, setScrolled] = useState(false);
+  const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -10,33 +11,44 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Logic: If not scrolled, always full width. If scrolled, only full width if hovered.
+  const isExpanded = !scrolled || hovered;
+
   return (
     <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
        <nav 
+         onMouseEnter={() => setHovered(true)}
+         onMouseLeave={() => setHovered(false)}
          className={`
            pointer-events-auto
-           transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1)]
-           ${scrolled ? 'w-[95%] md:w-[800px] bg-white/80 border-white/40 shadow-2xl backdrop-blur-2xl py-3' : 'w-[95%] md:w-[1200px] bg-white/40 border-white/20 shadow-sm backdrop-blur-md py-4'}
-           border rounded-full px-4 md:px-6 flex justify-between items-center
+           transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]
+           ${isExpanded ? 'w-[95%] md:w-[1200px] bg-white/60 border-white/40' : 'w-[95%] md:w-[600px] bg-white/80 border-white/60'}
+           shadow-2xl backdrop-blur-xl border rounded-full px-4 md:px-6 py-3 md:py-4 flex justify-between items-center
          `}
        >
-          <div className="flex items-center gap-2 cursor-pointer group" onClick={() => onViewChange('home')}>
-             <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-8 w-auto object-contain" />
+          <div className="flex items-center gap-2 cursor-pointer group shrink-0" onClick={() => onViewChange('home')}>
+             <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain" />
           </div>
 
-          <div className={`hidden md:flex items-center gap-8 text-xs font-bold text-gray-600 uppercase tracking-wider transition-all duration-500 ${scrolled ? 'opacity-0 w-0 overflow-hidden scale-90' : 'opacity-100 scale-100'}`}>
-             <button onClick={() => onViewChange('shop')} className="hover:text-[#FF6B00] transition-colors">Shop</button>
-             <button onClick={() => onViewChange('how-it-works')} className="hover:text-[#FF6B00] transition-colors">How It Works</button>
-             <button onClick={() => onViewChange('about')} className="hover:text-[#FF6B00] transition-colors">About</button>
-             <button onClick={() => onViewChange('support')} className="hover:text-[#FF6B00] transition-colors">Support</button>
+          {/* Desktop Menu */}
+          <div 
+            className={`
+              hidden md:flex items-center gap-6 text-[11px] font-bold text-gray-600 uppercase tracking-widest transition-all duration-500 overflow-hidden
+              ${isExpanded ? 'opacity-100 max-w-[600px] px-4' : 'opacity-0 max-w-0 px-0'}
+            `}
+          >
+             <button onClick={() => onViewChange('shop')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">Shop</button>
+             <button onClick={() => onViewChange('how-it-works')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">How It Works</button>
+             <button onClick={() => onViewChange('about')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">About</button>
+             <button onClick={() => onViewChange('support')} className="hover:text-[#FF6B00] transition-colors whitespace-nowrap">FAQ</button>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 md:gap-3 shrink-0">
              <button 
                onClick={() => onViewChange('download')}
-               className="hidden md:block bg-gray-100 text-[#111] px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors"
+               className={`hidden md:block bg-gray-100 text-[#111] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors ${!isExpanded ? 'hidden' : ''}`}
              >
-               Download App
+               App
              </button>
              <button 
                onClick={() => onViewChange('shop')}

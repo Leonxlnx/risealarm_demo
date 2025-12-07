@@ -8,6 +8,9 @@ import { Navbar, Ticker } from './components/ui/Navbar';
 import { Hero } from './components/sections/Hero';
 import { ProblemSection } from './components/sections/Problem';
 import { SocialsSection } from './components/sections/Socials';
+import { ComparisonSection } from './components/sections/Comparison';
+import { HomePricing } from './components/sections/HomePricing';
+import { CTASection } from './components/sections/CTA';
 
 // Pages
 import { ShopPage } from './pages/Shop';
@@ -39,7 +42,10 @@ const App = () => {
           <Hero />
           <Ticker />
           <ProblemSection />
+          <ComparisonSection />
+          <HomePricing onBuy={() => setCurrentView('checkout')} />
           <SocialsSection />
+          <CTASection onShop={() => setCurrentView('shop')} />
         </>
       );
     }
