@@ -1,6 +1,5 @@
 
 import React, { useEffect, useState, useRef } from 'react';
-import { Wifi, Battery, Layers, Cpu } from 'lucide-react';
 
 // --- SHARED HOOKS ---
 export const useScrollProgress = () => {
@@ -53,7 +52,7 @@ export const ScrollReveal = ({ children, className = "", delay = 0 }: any) => {
 
 export const SectionTag = ({ text }: { text: string }) => (
   <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-gray-200 bg-white/80 backdrop-blur-md mb-8 w-fit shadow-sm">
-      <span className="w-1.5 h-1.5 bg-[#FF4F00] rounded-full animate-pulse"></span>
+      <span className="w-1.5 h-1.5 bg-[#FF6B00] rounded-full animate-pulse"></span>
       <span className="text-[10px] font-mono uppercase tracking-widest text-gray-500 font-bold">{text}</span>
   </div>
 );
@@ -116,8 +115,8 @@ export const FluidBackground = () => {
         float pattern = noise1 * 0.5 + noise2 * 0.5;
         
         vec3 bg = vec3(0.97, 0.97, 0.96); // #F9F9F7
-        vec3 orange = vec3(1.0, 0.31, 0.0); // #FF4F00
-        vec3 deepOrange = vec3(0.8, 0.2, 0.0);
+        vec3 orange = vec3(1.0, 0.42, 0.0); // #FF6B00
+        vec3 deepOrange = vec3(0.8, 0.3, 0.0);
 
         vec3 color = mix(bg, orange, smoothstep(0.2, 0.8, pattern * 0.4 + uv.x * 0.2));
         color = mix(color, deepOrange, uv.y * 0.1);
@@ -178,46 +177,23 @@ export const FluidBackground = () => {
 };
 
 export const ThePod = ({ scale = 1, className = "", highlight = 'none' }: { scale?: number, className?: string, highlight?: string }) => {
-  const isHighlight = (key: string) => highlight === key;
-
   return (
     <div 
       className={`relative group perspective-1000 ${className}`}
       style={{ 
-        width: `${200 * scale}px`, 
-        height: `${200 * scale}px`,
+        width: `${300 * scale}px`, 
+        height: 'auto',
         transformStyle: 'preserve-3d'
       }}
     >
        <div 
-          className={`w-full h-full bg-[#FAFAFA] rounded-[45px] shadow-2xl flex items-center justify-center relative z-10 transition-all duration-700 ease-out border border-white/60
-            ${isHighlight('mount') ? 'translate-z-[-20px] scale-95 opacity-80' : 'translate-z-0'}
-          `}
+          className={`relative z-10 transition-all duration-700 ease-out`}
         >
-          <div className="absolute inset-0 rounded-[45px] bg-gradient-to-tr from-gray-50 to-white"></div>
-          <div 
-            className={`w-[60%] h-[60%] rounded-full bg-white shadow-inner flex items-center justify-center border transition-all duration-500 z-20
-              ${isHighlight('nfc') ? 'border-[#FF4F00] shadow-[0_0_30px_rgba(255,79,0,0.3)] scale-110' : 'border-gray-100'}
-            `}
-          >
-             <Wifi 
-               size={60 * scale} 
-               className={`transition-all duration-500 ${isHighlight('nfc') ? 'text-[#FF4F00]' : 'text-gray-300'}`} 
-               strokeWidth={2.5} 
-             />
-          </div>
-          <div className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500 z-30 ${isHighlight('chip') ? 'opacity-100' : 'opacity-0'}`}>
-             <div className="w-[80%] h-[80%] border border-[#FF4F00]/30 rounded-[35px] flex items-center justify-center bg-black/5 backdrop-blur-sm">
-                 <Cpu className="text-[#FF4F00] animate-pulse" size={40} />
-             </div>
-          </div>
-          <div 
-            className={`absolute top-[15%] right-[15%] w-[4%] h-[4%] rounded-full bg-gray-200 z-30 transition-all duration-500
-              ${isHighlight('battery') ? 'scale-[2.5] bg-[#32D74B] shadow-[0_0_15px_#32D74B]' : ''}
-            `}
-          >
-             <div className={`w-full h-full rounded-full animate-pulse ${isHighlight('battery') ? 'bg-white' : 'bg-[#FF4F00]'}`}></div>
-          </div>
+          <img 
+            src="/assets/RisePod.png" 
+            alt="Rise Alarm Pod"
+            className="w-full h-full object-contain drop-shadow-2xl"
+          />
        </div>
     </div>
   );

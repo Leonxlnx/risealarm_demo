@@ -17,15 +17,15 @@ export const PreOrderSection = ({ onCheckout }: { onCheckout?: () => void }) => 
                 
                 {/* Sale Option */}
                 <div 
-                  className={`relative p-8 rounded-3xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between group ${selectedPack === 'pod' ? 'bg-white border-[#FF4F00] shadow-2xl shadow-orange-500/10' : 'bg-white border-transparent hover:border-gray-200'}`}
+                  className={`relative p-8 rounded-3xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between group ${selectedPack === 'pod' ? 'bg-white border-[#FF6B00] shadow-2xl shadow-orange-500/10' : 'bg-white border-transparent hover:border-gray-200'}`}
                   onClick={() => setSelectedPack('pod')}
                 >
-                   <div className="absolute top-0 right-0 bg-[#FF4F00] text-white text-[10px] font-bold uppercase px-3 py-1 rounded-bl-xl rounded-tr-2xl flex items-center gap-1">
+                   <div className="absolute top-0 right-0 bg-[#FF6B00] text-white text-[10px] font-bold uppercase px-3 py-1 rounded-bl-xl rounded-tr-2xl flex items-center gap-1">
                       <Tag size={10} /> SAVE 54%
                    </div>
                    <div className="flex items-center gap-6">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPack === 'pod' ? 'border-[#FF4F00]' : 'border-gray-300'}`}>
-                         {selectedPack === 'pod' && <div className="w-3 h-3 bg-[#FF4F00] rounded-full" />}
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPack === 'pod' ? 'border-[#FF6B00]' : 'border-gray-300'}`}>
+                         {selectedPack === 'pod' && <div className="w-3 h-3 bg-[#FF6B00] rounded-full" />}
                       </div>
                       <div>
                          <h3 className="text-2xl font-bold">Rise Alarm Pod</h3>
@@ -40,12 +40,12 @@ export const PreOrderSection = ({ onCheckout }: { onCheckout?: () => void }) => 
 
                 {/* Waitlist Option */}
                 <div 
-                  className={`relative p-8 rounded-3xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between group ${selectedPack === 'waitlist' ? 'bg-white border-[#FF4F00] shadow-2xl shadow-orange-500/10' : 'bg-white border-transparent hover:border-gray-200'}`}
+                  className={`relative p-8 rounded-3xl border-2 cursor-pointer transition-all duration-300 flex items-center justify-between group ${selectedPack === 'waitlist' ? 'bg-white border-[#FF6B00] shadow-2xl shadow-orange-500/10' : 'bg-white border-transparent hover:border-gray-200'}`}
                   onClick={() => setSelectedPack('waitlist')}
                 >
                    <div className="flex items-center gap-6">
-                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPack === 'waitlist' ? 'border-[#FF4F00]' : 'border-gray-300'}`}>
-                         {selectedPack === 'waitlist' && <div className="w-3 h-3 bg-[#FF4F00] rounded-full" />}
+                      <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${selectedPack === 'waitlist' ? 'border-[#FF6B00]' : 'border-gray-300'}`}>
+                         {selectedPack === 'waitlist' && <div className="w-3 h-3 bg-[#FF6B00] rounded-full" />}
                       </div>
                       <div>
                          <h3 className="text-2xl font-bold">Join the Waitlist</h3>
@@ -80,7 +80,7 @@ export const PreOrderSection = ({ onCheckout }: { onCheckout?: () => void }) => 
              <div className="lg:col-span-5">
                 <div className="bg-[#111] text-white p-8 rounded-[2rem] shadow-2xl">
                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                      <ShieldCheck className="text-[#FF4F00]" />
+                      <ShieldCheck className="text-[#FF6B00]" />
                       Order Summary
                    </h3>
                    <div className="space-y-4 mb-8 text-sm text-gray-400">
@@ -100,7 +100,7 @@ export const PreOrderSection = ({ onCheckout }: { onCheckout?: () => void }) => 
                    </div>
                    <button 
                      onClick={onCheckout}
-                     className="w-full py-4 bg-[#FF4F00] text-white rounded-xl font-bold text-lg hover:bg-white hover:text-[#FF4F00] transition-colors mb-4 flex items-center justify-center gap-2 group"
+                     className="w-full py-4 bg-[#FF6B00] text-white rounded-xl font-bold text-lg hover:bg-white hover:text-[#FF6B00] transition-colors mb-4 flex items-center justify-center gap-2 group"
                    >
                       {selectedPack === 'pod' ? 'Pre-Order Now' : 'Join Waitlist'}
                       <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform"/>

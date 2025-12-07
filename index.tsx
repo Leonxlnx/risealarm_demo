@@ -57,11 +57,11 @@ const App = () => {
         <footer className="bg-[#111] text-white pt-24 pb-12 px-6 border-t border-white/10">
            <div className="max-w-[1400px] mx-auto flex flex-col items-center">
               <h2 className="text-[15vw] font-bold text-[#222] leading-none mb-12 select-none tracking-tighter cursor-default transition-all duration-700 hover:text-white hover:tracking-tight hover:scale-105">
-                RISEALARM
+                RISE ALARM
               </h2>
               
               <div className="flex flex-col md:flex-row justify-between w-full text-sm text-gray-500 font-mono uppercase tracking-widest">
-                 <div className="mb-4 md:mb-0">© 2025 RiseAlarm Inc.</div>
+                 <div className="mb-4 md:mb-0">© 2025 Rise Alarm Inc.</div>
                  <div className="flex gap-8">
                     <button onClick={() => setCurrentView('legal')} className="hover:text-white transition-colors">Legal</button>
                     <button onClick={() => setCurrentView('privacy')} className="hover:text-white transition-colors">Privacy</button>

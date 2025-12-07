@@ -10,10 +10,10 @@ const FAQItem = ({ question, answer, isOpen, onClick }: any) => {
       onClick={onClick}
     >
       <div className="flex justify-between items-center">
-         <h4 className={`text-xl md:text-3xl font-bold transition-colors duration-300 text-left ${isOpen ? 'text-[#FF4F00]' : 'text-[#111] group-hover:text-gray-600'}`}>
+         <h4 className={`text-xl md:text-3xl font-bold transition-colors duration-300 text-left ${isOpen ? 'text-[#FF6B00]' : 'text-[#111] group-hover:text-gray-600'}`}>
             {question}
          </h4>
-         <div className={`shrink-0 w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#FF4F00] border-[#FF4F00] rotate-180' : 'bg-white group-hover:bg-gray-50'}`}>
+         <div className={`shrink-0 w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-[#FF6B00] border-[#FF6B00] rotate-180' : 'bg-white group-hover:bg-gray-50'}`}>
             {isOpen ? <Minus size={20} className="text-white"/> : <Plus size={20} className="text-[#111]"/>}
          </div>
       </div>
@@ -64,7 +64,7 @@ export const FAQSection = () => {
        <div className="max-w-[1000px] mx-auto text-center">
           <ScrollReveal>
              <div className="flex flex-col items-center gap-4 mb-16">
-                <span className="font-mono uppercase text-xs tracking-widest text-[#FF4F00] font-bold">Knowledge Base</span>
+                <span className="font-mono uppercase text-xs tracking-widest text-[#FF6B00] font-bold">Knowledge Base</span>
                 <h2 className="text-5xl font-bold text-[#111]">Everything you need<br/>to know.</h2>
              </div>
           </ScrollReveal>

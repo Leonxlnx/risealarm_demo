@@ -32,7 +32,7 @@ export const ManifestoSection = () => {
   return (
     <section ref={containerRef} className="min-h-[90vh] flex items-center justify-center bg-[#F5F5F0] text-[#111] relative overflow-hidden py-24 md:py-40">
        <div className="max-w-5xl mx-auto px-6 relative z-10 text-center">
-            <div className="w-20 h-1 bg-[#FF4F00] mx-auto mb-12 rounded-full"></div>
+            <div className="w-20 h-1 bg-[#FF6B00] mx-auto mb-12 rounded-full"></div>
             <p className="text-3xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight mb-12 flex flex-wrap justify-center gap-x-3 gap-y-1">
               {words.map((word, i) => {
                 const step = 1 / words.length;

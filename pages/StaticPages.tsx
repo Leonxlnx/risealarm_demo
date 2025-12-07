@@ -7,7 +7,7 @@ export const PageLayout = ({ title, children, onBack }: any) => (
     <div className="max-w-3xl mx-auto">
       <button 
         onClick={onBack}
-        className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF4F00] mb-12 transition-colors"
+        className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors"
       >
         <ArrowLeft size={16} /> Back
       </button>
@@ -111,12 +111,12 @@ export const ContactPage = ({ onBack }: any) => (
       <div className="bg-white p-8 rounded-2xl border border-gray-200">
         <h3 className="font-bold text-xl mb-2">Support</h3>
         <p className="text-gray-500 mb-4">For technical issues with your pod.</p>
-        <a href="mailto:support@risedaily.app" className="text-[#FF4F00] font-bold underline">support@risedaily.app</a>
+        <a href="mailto:support@risedaily.app" className="text-[#FF6B00] font-bold underline">support@risedaily.app</a>
       </div>
       <div className="bg-white p-8 rounded-2xl border border-gray-200">
         <h3 className="font-bold text-xl mb-2">Privacy</h3>
         <p className="text-gray-500 mb-4">For privacy related inquiries.</p>
-        <a href="mailto:privacy@risedaily.app" className="text-[#FF4F00] font-bold underline">privacy@risedaily.app</a>
+        <a href="mailto:privacy@risedaily.app" className="text-[#FF6B00] font-bold underline">privacy@risedaily.app</a>
       </div>
     </div>
   </PageLayout>

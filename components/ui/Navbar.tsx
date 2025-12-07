@@ -33,19 +33,18 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
          `}
        >
           <div className="pl-4 flex items-center gap-2 cursor-pointer group" onClick={() => onViewChange('home')}>
-             <div className="w-3 h-3 bg-[#FF4F00] rounded-full group-hover:scale-110 transition-transform"></div>
-             <span className="font-bold tracking-tight text-[#111] uppercase text-sm">RiseAlarm.</span>
+             <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-8 w-auto object-contain" />
           </div>
 
           <div className={`hidden md:flex items-center gap-8 text-xs font-medium text-gray-600 transition-all duration-500 ${scrolled ? 'opacity-0 w-0 overflow-hidden scale-90' : 'opacity-100 scale-100'}`}>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">How It Works</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">About Us</button>
-             <button onClick={() => onViewChange('home')} className="hover:text-[#FF4F00] transition-colors">FAQ</button>
+             <button onClick={() => onViewChange('home')} className="hover:text-[#FF6B00] transition-colors">How It Works</button>
+             <button onClick={() => onViewChange('home')} className="hover:text-[#FF6B00] transition-colors">About Us</button>
+             <button onClick={() => onViewChange('home')} className="hover:text-[#FF6B00] transition-colors">FAQ</button>
           </div>
 
           <button 
             onClick={handlePreOrder}
-            className="bg-[#111] text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#FF4F00] transition-colors shadow-lg"
+            className="bg-[#111] text-white px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-[#FF6B00] transition-colors shadow-lg"
           >
             Pre-Order
           </button>
@@ -55,7 +54,7 @@ export const Navbar = ({ onViewChange }: { onViewChange: (view: string) => void 
 };
 
 export const Ticker = () => (
-  <div className="bg-[#FF4F00] py-3 overflow-hidden relative z-20">
+  <div className="bg-[#FF6B00] py-3 overflow-hidden relative z-20">
     <div className="flex gap-12 animate-marquee whitespace-nowrap font-mono text-sm font-bold uppercase tracking-widest text-black/90">
       {Array(10).fill(" /// Wake Up. Tap In. Start Your Day. /// No Snooze Allowed /// Build Habits").map((t, i) => (
         <span key={i}>{t}</span>
