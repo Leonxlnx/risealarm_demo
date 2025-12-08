@@ -3,7 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global Antialiasing for High-Fidelity Text */
+/* Global Antialiasing */
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -13,20 +13,43 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar to match the theme */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: #F5F5F0; 
 }
-
 ::-webkit-scrollbar-thumb {
   background: #D4D4D0; 
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #FF4F00; 
+}
+
+/* --- ANIMATION UTILITIES --- */
+
+/* The "Liquid" flow for the strip */
+@keyframes liquidFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-liquid {
+  background-size: 200% 200%;
+  animation: liquidFlow 15s ease infinite;
+}
+
+/* Smooth Marquee */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee 40s linear infinite reverse;
 }

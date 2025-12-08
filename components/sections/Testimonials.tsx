@@ -1,7 +1,14 @@
+
 import React from 'react';
 import { Star } from 'lucide-react';
 
-const TestimonialCard = ({ quote, author, role }: { quote: string, author: string, role: string }) => (
+interface TestimonialCardProps {
+  quote: string;
+  author: string;
+  role: string;
+}
+
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author, role }) => (
     <div className="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm mx-4">
         <div className="flex text-[#FF6B00] mb-4 gap-0.5">
             {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}
