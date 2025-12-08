@@ -1,20 +1,19 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { Reveal } from '../ui/DesignSystem';
+import { Reveal, TextReveal, ShinyButton } from '../ui/DesignSystem';
 
 export const Hero = () => {
   return (
     <section className="relative min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#F9F9F7] pt-32 md:pt-0">
       
-      {/* Background Image - CRISP (No Blur) */}
+      {/* Background Image - CRISP */}
       <div className="hidden md:block absolute inset-0 z-0 transition-transform duration-[20s] ease-linear hover:scale-105">
          <img 
             src="/assets/herobgrise.png" 
             alt="Rise Alarm Hero Background" 
             className="w-full h-full object-cover"
          />
-         {/* Overlay is now just color, NO blur */}
          <div className="absolute inset-0 bg-white/40"></div>
       </div>
 
@@ -22,22 +21,22 @@ export const Hero = () => {
          
          <div className="flex flex-col items-center lg:items-start text-center lg:text-left justify-center pt-8 lg:pt-0 pb-12 lg:pb-0">
              
-             {/* Mask Reveal for Headline - Super Premium */}
-             <div className="mb-6 lg:mb-8">
+             {/* Text Reveal - Words explode onto screen */}
+             <div className="mb-6 lg:mb-8 font-bold tracking-[-0.04em] leading-[0.9]">
                <Reveal mode="mask" delay={200}>
-                 <h1 className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] font-bold tracking-[-0.04em] text-[#0A0A0A] leading-[0.9]">
-                   WAKE UP.
-                 </h1>
+                 <div className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] text-[#0A0A0A]">
+                    <TextReveal text="WAKE UP." delay={0.2} />
+                 </div>
                </Reveal>
                <Reveal mode="mask" delay={350}>
-                 <h1 className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] font-bold tracking-[-0.04em] text-[#0A0A0A] leading-[0.9]">
-                   TAP IN.
-                 </h1>
+                 <div className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] text-[#0A0A0A]">
+                    <TextReveal text="TAP IN." delay={0.4} />
+                 </div>
                </Reveal>
                <Reveal mode="mask" delay={500}>
-                 <h1 className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] font-bold tracking-[-0.04em] text-[#FF6B00] leading-[0.9]">
-                   START DAY.
-                 </h1>
+                 <div className="text-[12vw] sm:text-[8vw] lg:text-[4.5rem] xl:text-[5.5rem] text-[#FF6B00]">
+                    <TextReveal text="START DAY." delay={0.6} />
+                 </div>
                </Reveal>
              </div>
 
@@ -49,13 +48,13 @@ export const Hero = () => {
 
              <Reveal mode="blur" delay={900}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <button 
+                  <ShinyButton 
                     onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-8 py-4 bg-[#0A0A0A] text-white rounded-full text-sm lg:text-base font-bold flex items-center justify-center gap-3 hover:bg-[#FF6B00] transition-all duration-300 group shadow-2xl hover:shadow-[#FF6B00]/40 hover:-translate-y-1 active:scale-95 active:translate-y-0"
+                    className="px-10 py-5 text-lg"
                   >
                     Pre-Order Now — $25
                     <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </ShinyButton>
                 </div>
              </Reveal>
          </div>

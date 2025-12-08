@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShinyButton } from './DesignSystem';
 
 export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: string) => void, cartCount: number }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -140,39 +141,37 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
   );
 };
 
-// --- PREMIUM WAVY STRIP ---
+// --- CLEAN & PROFESSIONAL TICKER (No Bugs) ---
+// Technique: Use a double-width SVG container that translates linearly.
 export const Ticker = () => {
   return (
-    <div className="relative w-full h-[16vh] bg-white overflow-hidden -mt-1">
-      
-       {/* Layer 1: Back Wave (Slow, Darker Orange) */}
-       <div className="absolute bottom-[-10%] left-0 w-[200%] h-full flex animate-wave-slow opacity-80">
-          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#E05E00] fill-current" preserveAspectRatio="none">
-             <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#E05E00] fill-current" preserveAspectRatio="none">
-             <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-       </div>
-
-       {/* Layer 2: Middle Wave (Medium Speed, Main Orange) */}
-       <div className="absolute bottom-[-10%] left-[-20%] w-[200%] h-full flex animate-wave-medium opacity-90">
-          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF6B00] fill-current" preserveAspectRatio="none">
-             <path d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF6B00] fill-current" preserveAspectRatio="none">
-             <path d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-       </div>
-
-       {/* Layer 3: Front Wave (Fast, Lighter Orange for highlight) */}
-       <div className="absolute bottom-[-20%] left-[-40%] w-[200%] h-full flex animate-wave-fast mix-blend-screen opacity-60">
-          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF9E4D] fill-current" preserveAspectRatio="none">
-             <path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
-          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF9E4D] fill-current" preserveAspectRatio="none">
-             <path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
-          </svg>
+    <div className="relative w-full h-[12vh] md:h-[18vh] bg-white overflow-hidden -mt-1 border-b border-[#FF6B00]/10">
+       <div className="absolute inset-0 w-[200%] flex animate-wave-clean">
+          {/* SVG 1 (Original) */}
+          <div className="w-[50%] h-full relative">
+               <svg className="absolute bottom-0 w-full h-full text-[#FF6B00] opacity-20" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                 <path fill="currentColor" d="M0,192L60,197.3C120,203,240,213,360,202.7C480,192,600,160,720,160C840,160,960,192,1080,208C1200,224,1320,224,1380,224L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+               </svg>
+               <svg className="absolute bottom-0 w-full h-[80%] text-[#FF6B00] opacity-40" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                 <path fill="currentColor" d="M0,128L60,138.7C120,149,240,171,360,165.3C480,160,600,128,720,138.7C840,149,960,203,1080,208C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+               </svg>
+               <svg className="absolute bottom-0 w-full h-[60%] text-[#FF6B00] opacity-100" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                 <path fill="currentColor" d="M0,64L60,85.3C120,107,240,149,360,149.3C480,149,600,107,720,106.7C840,107,960,149,1080,160C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+               </svg>
+          </div>
+          
+          {/* SVG 2 (Duplicate for Loop) */}
+          <div className="w-[50%] h-full relative">
+               <svg className="absolute bottom-0 w-full h-full text-[#FF6B00] opacity-20" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                 <path fill="currentColor" d="M0,192L60,197.3C120,203,240,213,360,202.7C480,192,600,160,720,160C840,160,960,192,1080,208C1200,224,1320,224,1380,224L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+               </svg>
+               <svg className="absolute bottom-0 w-full h-[80%] text-[#FF6B00] opacity-40" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                 <path fill="currentColor" d="M0,128L60,138.7C120,149,240,171,360,165.3C480,160,600,128,720,138.7C840,149,960,203,1080,208C1200,213,1320,171,1380,149.3L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+               </svg>
+               <svg className="absolute bottom-0 w-full h-[60%] text-[#FF6B00] opacity-100" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                 <path fill="currentColor" d="M0,64L60,85.3C120,107,240,149,360,149.3C480,149,600,107,720,106.7C840,107,960,149,1080,160C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+               </svg>
+          </div>
        </div>
     </div>
   );
