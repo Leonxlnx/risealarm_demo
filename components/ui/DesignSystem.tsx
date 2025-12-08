@@ -1,7 +1,25 @@
+
 import React, { useEffect, useState, useRef } from 'react';
 
+// --- SHARED HOOKS ---
+export const useScrollProgress = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      requestAnimationFrame(() => {
+        const totalScroll = document.documentElement.scrollTop;
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scroll = totalScroll / windowHeight;
+        setScrollProgress(scroll);
+      });
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+  return scrollProgress;
+};
+
 // --- 1. SHINY BUTTON (THE "GEILER" BUTTON) ---
-// Features: Inner glow traverse, scaling on click, border glow on hover
 interface ShinyButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
     className?: string;
@@ -20,29 +38,24 @@ export const ShinyButton: React.FC<ShinyButtonProps> = ({ children, className = 
             `}
             {...props}
         >
-            {/* The Shimmer Effect */}
             <div className="absolute inset-0 -translate-x-full group-hover:animate-shimmer z-0 pointer-events-none">
                 <div className="w-1/2 h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"></div>
             </div>
-
-            {/* The Content */}
             <div className="relative z-10 flex items-center justify-center gap-2">
                 {children}
             </div>
-
-            {/* The Border Glow (Pseudo-border) */}
             <div className={`absolute inset-0 rounded-full border-2 border-transparent transition-colors duration-300 pointer-events-none ${variant === 'primary' ? 'group-hover:border-[#FF6B00]/50' : 'group-hover:border-[#FF6B00]'}`}></div>
         </button>
     );
 };
 
-// --- 2. TILT CARD (THE "KRASSE" 3D CARD) ---
-// Features: Follows mouse movement with 3D rotation
+// --- 2. TILT CARD (RESPONSIVE FIX) ---
 export const TiltCard = ({ children, className = "" }: { children?: React.ReactNode, className?: string }) => {
     const ref = useRef<HTMLDivElement>(null);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!ref.current) return;
+        // Disable Tilt on small screens to prevent scroll hijacking/weirdness
+        if (window.innerWidth < 768 || !ref.current) return;
         
         const rect = ref.current.getBoundingClientRect();
         const width = rect.width;
@@ -53,9 +66,8 @@ export const TiltCard = ({ children, className = "" }: { children?: React.ReactN
         const xPct = mouseX / width - 0.5;
         const yPct = mouseY / height - 0.5;
         
-        // Tilt strength
-        const x = yPct * 20; // Rotate X axis based on Y position
-        const y = xPct * -20; // Rotate Y axis based on X position
+        const x = yPct * 20; 
+        const y = xPct * -20;
         
         ref.current.style.transform = `rotateX(${x}deg) rotateY(${y}deg) scale(1.02)`;
     };
@@ -82,10 +94,8 @@ export const TiltCard = ({ children, className = "" }: { children?: React.ReactN
     );
 };
 
-// --- 3. TEXT REVEAL (STAGGERED WORDS) ---
+// --- 3. TEXT REVEAL ---
 export const TextReveal = ({ text, className = "", delay = 0 }: { text: React.ReactNode, className?: string, delay?: number }) => {
-    // If text is complex (contains span/br), render it directly for now, 
-    // but if it's a string, we split it for animation.
     if (typeof text !== 'string') return <div className={className}>{text}</div>;
 
     const words = text.split(' ');
@@ -107,7 +117,7 @@ export const TextReveal = ({ text, className = "", delay = 0 }: { text: React.Re
     );
 };
 
-// --- 4. STANDARD REVEAL (UPDATED) ---
+// --- 4. REVEAL ---
 export const Reveal = ({ children, className = "", delay = 0, mode = 'blur' }: any) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
@@ -135,9 +145,7 @@ export const Reveal = ({ children, className = "", delay = 0, mode = 'blur' }: a
             transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
             transition: `all 0.8s cubic-bezier(0.2, 1, 0.2, 1) ${delay}ms`
         },
-        mask: {
-            // Handled in render
-        }
+        mask: { }
     };
 
     if (mode === 'mask') {
@@ -160,9 +168,8 @@ export const Reveal = ({ children, className = "", delay = 0, mode = 'blur' }: a
     );
 };
 
-export const ScrollReveal = Reveal; // Alias
+export const ScrollReveal = Reveal;
 
-// --- VISUAL ASSETS ---
 export const SectionTag = ({ text }: { text: string }) => (
   <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gray-200/50 bg-white/50 backdrop-blur-xl mb-8 w-fit shadow-sm">
       <span className="w-1.5 h-1.5 bg-[#FF6B00] rounded-full animate-pulse shadow-[0_0_12px_#FF6B00]"></span>
@@ -170,25 +177,28 @@ export const SectionTag = ({ text }: { text: string }) => (
   </div>
 );
 
+// --- VISUAL ASSETS (RESPONSIVE POD) ---
 export const ThePod = ({ scale = 1, className = "", highlight = 'none' }: { scale?: number, className?: string, highlight?: string }) => {
   return (
     <div 
-      className={`relative group perspective-1000 ${className}`}
+      className={`relative group perspective-1000 mx-auto ${className}`}
       style={{ 
-        width: `${300 * scale}px`, 
+        // Logic: Use variable scale for calculation but cap at 100% width to prevent overflow
+        width: '100%',
+        maxWidth: `${300 * scale}px`, 
         height: 'auto',
+        aspectRatio: '1/1' // Ensure aspect ratio stays constant even when shrinking
       }}
     >
        <div 
-          className={`relative z-10 transition-all duration-[1500ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-hover:-translate-y-4 will-change-transform`}
+          className={`relative z-10 w-full h-full transition-all duration-[1500ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-hover:-translate-y-4 will-change-transform flex items-center justify-center`}
         >
           <img 
             src="/assets/RisePod.png" 
             alt="Rise Alarm Pod"
             className="w-full h-full object-contain drop-shadow-2xl"
           />
-          {/* Reflection/Shadow for grounding */}
-          <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[80%] h-4 bg-black/20 blur-xl rounded-[100%] transition-all duration-1000 group-hover:w-[60%] group-hover:bg-black/10"></div>
+          <div className="absolute -bottom-[10%] left-1/2 -translate-x-1/2 w-[80%] h-4 bg-black/20 blur-xl rounded-[100%] transition-all duration-1000 group-hover:w-[60%] group-hover:bg-black/10"></div>
        </div>
     </div>
   );

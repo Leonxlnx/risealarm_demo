@@ -20,14 +20,14 @@ const ScrollFeature = ({ title, spec, desc, icon: Icon, id, setActiveId }: any) 
     }, [id, setActiveId]);
 
     return (
-        <div ref={ref} className="min-h-[30vh] md:min-h-[40vh] flex items-center py-4 md:py-0">
-            <div className="bg-white p-8 md:p-10 rounded-[2rem] border border-gray-200 hover:border-[#FF6B00] transition-all duration-500 w-full shadow-sm hover:shadow-lg">
+        <div ref={ref} className="min-h-[auto] md:min-h-[40vh] flex items-center py-6 md:py-0">
+            <div className="bg-white p-6 md:p-10 rounded-[2rem] border border-gray-200 hover:border-[#FF6B00] transition-all duration-500 w-full shadow-sm hover:shadow-lg">
                 <div className="w-12 h-12 rounded-full bg-gray-50 flex items-center justify-center text-[#FF6B00] mb-6">
                     <Icon size={24} />
                 </div>
-                <h3 className="text-2xl md:text-3xl font-bold mb-2 text-[#111]">{title}</h3>
+                <h3 className="text-xl md:text-3xl font-bold mb-2 text-[#111]">{title}</h3>
                 <span className="font-mono text-xs text-[#FF6B00] mb-6 block uppercase tracking-widest">{spec}</span>
-                <p className="text-gray-500 leading-relaxed text-base md:text-lg">
+                <p className="text-gray-500 leading-relaxed text-sm md:text-lg">
                     {desc}
                 </p>
             </div>
@@ -71,17 +71,21 @@ export const HardwareSection = () => {
 
   return (
     <div className="bg-[#F2F2F0] text-[#111] py-12 md:py-20">
-      <div className="max-w-[1400px] mx-auto px-6">
-        <div className="mb-16 md:mb-32 text-center md:text-left">
+      <div className="max-w-[1400px] mx-auto px-4 md:px-6">
+        <div className="mb-12 md:mb-32 text-center md:text-left">
             <h2 className="text-4xl md:text-8xl font-bold leading-none tracking-tight mb-4">
                 Built to Beat<br/>the
                 <span className="text-[#FF6B00]"> Snooze.</span>
             </h2>
         </div>
-        <div className="flex flex-col lg:flex-row gap-12">
-            <div className="lg:w-1/2 h-[50vh] lg:h-screen sticky top-20 lg:top-0 flex items-center justify-center bg-[#E5E5E2] rounded-[2rem] lg:rounded-[3rem] border border-gray-300 overflow-hidden order-1 lg:order-1 z-10 shadow-inner">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
+            {/* 
+               MOBILE FIX: Removed 'h-screen sticky' on mobile. 
+               Now it sits naturally in the flow with a fixed height.
+            */}
+            <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen lg:sticky lg:top-0 flex items-center justify-center bg-[#E5E5E2] rounded-[2rem] lg:rounded-[3rem] border border-gray-300 overflow-hidden order-1 lg:order-1 z-10 shadow-inner">
                 <div className="absolute inset-0 opacity-40 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
-                <div className="relative z-10 scale-[0.8] lg:scale-[1.0] transition-all duration-500">
+                <div className="relative z-10 w-[60%] lg:w-auto transition-all duration-500">
                     <ThePod scale={1.8} highlight={activeFeature} />
                 </div>
                 <div className="absolute bottom-8 lg:bottom-12 left-0 w-full text-center">
@@ -90,7 +94,7 @@ export const HardwareSection = () => {
                     </span>
                 </div>
             </div>
-            <div className="lg:w-1/2 lg:pl-20 order-2 lg:order-2 pb-24">
+            <div className="w-full lg:w-1/2 lg:pl-20 order-2 lg:order-2 pb-12 lg:pb-24">
                {features.map((f, i) => (
                    <ScrollFeature key={i} {...f} setActiveId={setActiveFeature} />
                ))}

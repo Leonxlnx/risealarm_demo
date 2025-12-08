@@ -25,50 +25,36 @@ html {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF6B00; 
+  background: #FF4F00; 
 }
 
-/* --- ADVANCED ANIMATIONS --- */
+/* --- ANIMATION UTILITIES --- */
 
-/* 1. Button Shimmer Effect */
-@keyframes shimmer {
-  0% { transform: translateX(-150%); }
-  100% { transform: translateX(150%); }
+/* Wave Animations */
+@keyframes wave {
+  0% { transform: translateX(0) translateZ(0) scaleY(1); }
+  50% { transform: translateX(-25%) translateZ(0) scaleY(0.85); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
 }
 
-.animate-shimmer {
-  animation: shimmer 2.5s infinite linear;
+.animate-wave-slow {
+  animation: wave 18s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.animate-wave-medium {
+  animation: wave 13s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.animate-wave-fast {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
 
-/* 2. Text Word Reveal */
-@keyframes word-up {
-  0% { transform: translateY(100%); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-/* 3. Clean Wave Animation (No Glitch) */
-@keyframes wave-flow {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); } 
-}
-
-.animate-wave-clean {
-  animation: wave-flow 10s linear infinite;
-  will-change: transform;
-}
-
-/* 4. Marquee */
+/* Smooth Marquee */
 @keyframes marquee {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-.animate-marquee { animation: marquee 40s linear infinite; }
-.animate-marquee-reverse { animation: marquee 40s linear infinite reverse; }
-
-/* Utilities */
-.perspective-1000 {
-  perspective: 1000px;
+.animate-marquee {
+  animation: marquee 40s linear infinite;
 }
-.backface-hidden {
-  backface-visibility: hidden;
+.animate-marquee-reverse {
+  animation: marquee 40s linear infinite reverse;
 }

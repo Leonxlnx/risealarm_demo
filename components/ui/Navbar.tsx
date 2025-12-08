@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Menu, X } from 'lucide-react';
-import { ShinyButton } from './DesignSystem';
 
 export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: string) => void, cartCount: number }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -30,20 +29,22 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
 
   return (
     <>
-      <div className="fixed top-6 left-0 w-full z-50 flex justify-center px-4 pointer-events-none">
+      <div className="fixed top-4 md:top-6 left-0 w-full z-50 flex justify-center pointer-events-none">
          <nav 
            onMouseEnter={() => setHovered(true)}
            onMouseLeave={() => setHovered(false)}
            className={`
              pointer-events-auto
              transition-all duration-[800ms] ease-[cubic-bezier(0.25,1,0.25,1)]
-             ${isExpanded ? 'w-[95%] md:w-[1200px] bg-white/70 border-white/50 py-4' : 'w-[95%] md:w-[600px] bg-white/90 border-white/80 py-3'}
-             shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] backdrop-blur-2xl border rounded-full px-6 flex justify-between items-center relative z-50
+             /* MOBILE: Width is calc(100% - 24px) for safe margins on all phones */
+             /* DESKTOP: Width expands or contracts */
+             ${isExpanded ? 'w-[calc(100%-24px)] md:w-[1200px] bg-white/70 border-white/50 py-3 md:py-4' : 'w-[calc(100%-24px)] md:w-[600px] bg-white/90 border-white/80 py-2.5 md:py-3'}
+             shadow-[0_20px_40px_-10px_rgba(0,0,0,0.05)] backdrop-blur-2xl border rounded-full px-4 md:px-6 flex justify-between items-center relative z-50
            `}
          >
             {/* Left: Logo */}
             <div className="flex-1 flex justify-start">
-                <div className="flex items-center gap-3 cursor-pointer group shrink-0" onClick={() => handleMobileNav('home')}>
+                <div className="flex items-center gap-2 md:gap-3 cursor-pointer group shrink-0" onClick={() => handleMobileNav('home')}>
                    <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-12" />
                    <span className={`font-bold text-sm md:text-base tracking-tight text-[#111] transition-all duration-500 ${isExpanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 md:opacity-100 md:translate-x-0'}`}>
                       Rise Alarm
@@ -106,9 +107,9 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
 
                <button 
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                  className="md:hidden w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#111] border border-gray-100 shadow-sm active:scale-90 transition-transform"
+                  className="md:hidden w-9 h-9 bg-gray-50 rounded-full flex items-center justify-center text-[#111] border border-gray-200 shadow-sm active:scale-90 transition-transform"
                >
-                  {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                  {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
                </button>
             </div>
          </nav>
@@ -122,7 +123,7 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
                  <button 
                     key={view}
                     onClick={() => handleMobileNav(view)} 
-                    className="text-4xl font-bold text-[#111] hover:text-[#FF6B00] transition-colors transform hover:scale-105 duration-300"
+                    className="text-3xl md:text-4xl font-bold text-[#111] hover:text-[#FF6B00] transition-colors transform hover:scale-105 duration-300"
                     style={{ transitionDelay: `${i * 50}ms` }}
                  >
                     {view.replace(/-/g, ' ')}
@@ -141,13 +142,10 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
   );
 };
 
-// --- CLEAN & PROFESSIONAL TICKER (No Bugs) ---
-// Technique: Use a double-width SVG container that translates linearly.
 export const Ticker = () => {
   return (
     <div className="relative w-full h-[12vh] md:h-[18vh] bg-white overflow-hidden -mt-1 border-b border-[#FF6B00]/10">
        <div className="absolute inset-0 w-[200%] flex animate-wave-clean">
-          {/* SVG 1 (Original) */}
           <div className="w-[50%] h-full relative">
                <svg className="absolute bottom-0 w-full h-full text-[#FF6B00] opacity-20" viewBox="0 0 1440 320" preserveAspectRatio="none">
                  <path fill="currentColor" d="M0,192L60,197.3C120,203,240,213,360,202.7C480,192,600,160,720,160C840,160,960,192,1080,208C1200,224,1320,224,1380,224L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
@@ -159,8 +157,6 @@ export const Ticker = () => {
                  <path fill="currentColor" d="M0,64L60,85.3C120,107,240,149,360,149.3C480,149,600,107,720,106.7C840,107,960,149,1080,160C1200,171,1320,149,1380,138.7L1440,128L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
                </svg>
           </div>
-          
-          {/* SVG 2 (Duplicate for Loop) */}
           <div className="w-[50%] h-full relative">
                <svg className="absolute bottom-0 w-full h-full text-[#FF6B00] opacity-20" viewBox="0 0 1440 320" preserveAspectRatio="none">
                  <path fill="currentColor" d="M0,192L60,197.3C120,203,240,213,360,202.7C480,192,600,160,720,160C840,160,960,192,1080,208C1200,224,1320,224,1380,224L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
