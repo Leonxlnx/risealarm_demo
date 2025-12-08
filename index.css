@@ -30,6 +30,22 @@ html {
 
 /* --- ANIMATION UTILITIES --- */
 
+/* 1. Text Word Reveal (FIXES INVISIBLE TEXT) */
+@keyframes word-up {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* 2. Button Shimmer Effect */
+@keyframes shimmer {
+  0% { transform: translateX(-150%); }
+  100% { transform: translateX(150%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite linear;
+}
+
 /* Wave Animations */
 @keyframes wave {
   0% { transform: translateX(0) translateZ(0) scaleY(1); }

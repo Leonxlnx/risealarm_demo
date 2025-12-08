@@ -5,7 +5,7 @@ import { createRoot } from 'react-dom/client';
 import { Instagram, Linkedin } from 'lucide-react';
 
 // Modular Imports
-import { Navbar, Ticker } from './components/ui/Navbar';
+import { Navbar } from './components/ui/Navbar';
 import { Hero } from './components/sections/Hero';
 import { ProblemSection } from './components/sections/Problem';
 import { ComparisonSection } from './components/sections/Comparison';
@@ -47,7 +47,7 @@ const App = () => {
       default: return (
         <>
           <Hero />
-          <Ticker />
+          {/* Ticker removed */}
           <ProblemSection />
           <ComparisonSection />
           <TestimonialsSection />
