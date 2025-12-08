@@ -140,27 +140,39 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
   );
 };
 
-// --- ARTISTIC STRIP (REPLACED TICKER) ---
+// --- PREMIUM WAVY STRIP ---
 export const Ticker = () => {
   return (
-    <div className="relative w-full h-[15vh] overflow-hidden">
-       {/* 
-         Complex Fluid Animation Layer
-         Using multiple gradients moving at different speeds to create a "liquid glass/lava" effect 
-       */}
-       <div className="absolute inset-0 bg-[#FF6B00]">
-          {/* Layer 1: The Base Flow */}
-          <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,0.2)_50%,transparent_75%)] bg-[length:200%_200%] animate-liquid opacity-50 mix-blend-overlay"></div>
-          
-          {/* Layer 2: The Noise Texture */}
-          <div className="absolute inset-0 opacity-30 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply"></div>
-          
-          {/* Layer 3: Abstract Shapes moving slowly */}
-          <div className="absolute top-[-50%] left-[-20%] w-[80vw] h-[80vw] bg-yellow-500/30 rounded-full blur-[80px] animate-pulse duration-[8000ms]"></div>
-          <div className="absolute bottom-[-50%] right-[-20%] w-[80vw] h-[80vw] bg-red-600/30 rounded-full blur-[100px] animate-pulse duration-[10000ms]"></div>
-          
-          {/* Layer 4: Hard Edge Lines for contrast */}
-          <div className="absolute inset-0 bg-[repeating-linear-gradient(90deg,transparent,transparent_50px,rgba(0,0,0,0.05)_50px,rgba(0,0,0,0.05)_51px)] opacity-20"></div>
+    <div className="relative w-full h-[16vh] bg-white overflow-hidden -mt-1">
+      
+       {/* Layer 1: Back Wave (Slow, Darker Orange) */}
+       <div className="absolute bottom-[-10%] left-0 w-[200%] h-full flex animate-wave-slow opacity-80">
+          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#E05E00] fill-current" preserveAspectRatio="none">
+             <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#E05E00] fill-current" preserveAspectRatio="none">
+             <path d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+       </div>
+
+       {/* Layer 2: Middle Wave (Medium Speed, Main Orange) */}
+       <div className="absolute bottom-[-10%] left-[-20%] w-[200%] h-full flex animate-wave-medium opacity-90">
+          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF6B00] fill-current" preserveAspectRatio="none">
+             <path d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF6B00] fill-current" preserveAspectRatio="none">
+             <path d="M0,160L48,176C96,192,192,224,288,224C384,224,480,192,576,165.3C672,139,768,117,864,128C960,139,1056,181,1152,197.3C1248,213,1344,203,1392,197.3L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+       </div>
+
+       {/* Layer 3: Front Wave (Fast, Lighter Orange for highlight) */}
+       <div className="absolute bottom-[-20%] left-[-40%] w-[200%] h-full flex animate-wave-fast mix-blend-screen opacity-60">
+          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF9E4D] fill-current" preserveAspectRatio="none">
+             <path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
+          <svg viewBox="0 0 1440 320" className="w-1/2 h-full text-[#FF9E4D] fill-current" preserveAspectRatio="none">
+             <path d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,213.3C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+          </svg>
        </div>
     </div>
   );

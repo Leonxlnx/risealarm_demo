@@ -30,16 +30,21 @@ html {
 
 /* --- ANIMATION UTILITIES --- */
 
-/* The "Liquid" flow for the strip */
-@keyframes liquidFlow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Wave Animations */
+@keyframes wave {
+  0% { transform: translateX(0) translateZ(0) scaleY(1); }
+  50% { transform: translateX(-25%) translateZ(0) scaleY(0.85); }
+  100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
 }
 
-.animate-liquid {
-  background-size: 200% 200%;
-  animation: liquidFlow 15s ease infinite;
+.animate-wave-slow {
+  animation: wave 18s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.animate-wave-medium {
+  animation: wave 13s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+.animate-wave-fast {
+  animation: wave 10s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
 }
 
 /* Smooth Marquee */

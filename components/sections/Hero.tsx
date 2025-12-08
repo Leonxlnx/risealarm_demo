@@ -7,14 +7,15 @@ export const Hero = () => {
   return (
     <section className="relative min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#F9F9F7] pt-32 md:pt-0">
       
-      {/* Background Image */}
+      {/* Background Image - CRISP (No Blur) */}
       <div className="hidden md:block absolute inset-0 z-0 transition-transform duration-[20s] ease-linear hover:scale-105">
          <img 
             src="/assets/herobgrise.png" 
             alt="Rise Alarm Hero Background" 
             className="w-full h-full object-cover"
          />
-         <div className="absolute inset-0 bg-white/40 backdrop-blur-[2px]"></div>
+         {/* Overlay is now just color, NO blur */}
+         <div className="absolute inset-0 bg-white/40"></div>
       </div>
 
       <div className="relative z-10 max-w-[1200px] mx-auto w-full px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 items-center h-full gap-12 lg:gap-4">
