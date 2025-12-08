@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Star } from 'lucide-react';
 
@@ -44,7 +43,7 @@ export const TestimonialsSection = () => {
                 
                 <div className="flex animate-marquee">
                     {[...testimonials1, ...testimonials1, ...testimonials1].map((t, i) => (
-                        <TestimonialCard key={i} {...t} />
+                        <TestimonialCard key={i} quote={t.quote} author={t.author} role={t.role} />
                     ))}
                 </div>
             </div>
@@ -56,7 +55,7 @@ export const TestimonialsSection = () => {
                 
                 <div className="flex animate-marquee-reverse">
                     {[...testimonials2, ...testimonials2, ...testimonials2].map((t, i) => (
-                        <TestimonialCard key={i} {...t} />
+                        <TestimonialCard key={i} quote={t.quote} author={t.author} role={t.role} />
                     ))}
                 </div>
             </div>
