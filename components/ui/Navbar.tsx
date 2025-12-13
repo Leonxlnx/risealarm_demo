@@ -46,16 +46,16 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
                    <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-12" />
                    {/* MOBILE FIX: Text always visible (opacity-100), Logic only applies to desktop (md:) */}
                    <span className={`font-bold text-sm md:text-base tracking-tight text-[#111] transition-all duration-500 opacity-100 translate-x-0 ${isExpanded ? 'md:opacity-100 md:translate-x-0' : 'md:opacity-100 md:translate-x-0'}`}>
-                      Rise Alarm
+                      Rise
                    </span>
                 </div>
             </div>
 
-            {/* Center: Desktop Links */}
+            {/* Center: Desktop Links - Increased font size to text-sm (14px) approx 33% bigger */}
             <div className="hidden md:flex flex-0 shrink-0 justify-center">
                 <div 
                   className={`
-                    flex items-center gap-8 text-[11px] font-bold text-gray-600 uppercase tracking-widest transition-all duration-700 overflow-hidden
+                    flex items-center gap-8 text-sm font-bold text-gray-600 uppercase tracking-widest transition-all duration-700 overflow-hidden
                     ${isExpanded ? 'opacity-100 max-w-[500px] px-4' : 'opacity-0 max-w-0 px-0'}
                   `}
                 >

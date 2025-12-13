@@ -12,14 +12,11 @@ export const ShopPage = ({ onAddToCart }: { onAddToCart: () => void }) => {
           <div className="order-1 lg:order-1">
              <Reveal mode="blur">
                 <TiltCard>
-                    <div className="bg-[#E5E5E2] rounded-[2.5rem] h-[40vh] md:h-[50vh] lg:h-[70vh] flex items-center justify-center relative overflow-hidden border border-gray-200 shadow-inner group cursor-crosshair">
+                    <div className="bg-[#E5E5E2] rounded-[2.5rem] h-[40vh] md:h-[50vh] lg:h-[70vh] flex items-center justify-center relative overflow-hidden border border-gray-200 shadow-inner group">
                         <div className="absolute inset-0 opacity-40 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]"></div>
                         {/* Wrapper controls the pod size nicely on mobile */}
                         <div className="w-[80%] md:w-full flex justify-center">
                              <ThePod scale={2} />
-                        </div>
-                        <div className="absolute bottom-8 left-0 w-full text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden md:block">
-                            <span className="bg-white/50 backdrop-blur-md px-4 py-2 rounded-full text-xs font-mono uppercase tracking-widest text-gray-600">Drag to Inspect</span>
                         </div>
                     </div>
                 </TiltCard>
@@ -61,7 +58,7 @@ export const ShopPage = ({ onAddToCart }: { onAddToCart: () => void }) => {
              </Reveal>
 
              <div className="space-y-4 mb-10">
-                {['Compatible with iOS & Android', 'Battery-free (NFC Technology)', 'Premium Adhesive Backing included'].map((feat, i) => (
+                {['Compatible with iOS (Android Coming Soon)', 'Battery-free (NFC Technology)', 'Premium Adhesive Backing included'].map((feat, i) => (
                     <Reveal key={i} delay={500 + (i * 100)} mode="slide">
                         <div className="flex items-center gap-3">
                             <div className="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center text-green-600 shrink-0"><Check size={14}/></div>

@@ -4,16 +4,19 @@ import { Mail, BookOpen, AlertCircle, Truck, RefreshCw, ChevronRight, ArrowUpRig
 import { FAQSection } from '../components/sections/FAQ';
 import { ScrollReveal, ShinyButton } from '../components/ui/DesignSystem';
 
-const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "default" }: any) => {
+const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "default", onClick }: any) => {
     const isDark = variant === "dark";
     const isWarn = variant === "warn";
     
     return (
-        <div className={`
+        <div 
+            onClick={onClick}
+            className={`
             relative p-8 rounded-[2.5rem] border transition-all duration-500 group overflow-hidden flex flex-col justify-between
             ${isDark ? 'bg-[#111] text-white border-transparent' : 'bg-white text-[#111] border-gray-100 hover:border-gray-300'}
             ${isWarn ? 'bg-red-50 border-red-100 hover:border-red-200' : ''}
             shadow-sm hover:shadow-xl
+            ${onClick ? 'cursor-pointer active:scale-[0.98]' : ''}
             ${className}
         `}>
             {/* Hover Gradient */}
@@ -46,7 +49,7 @@ const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "
     );
 };
 
-export const SupportPage = () => {
+export const SupportPage = ({ onNavigate }: { onNavigate?: (view: string) => void }) => {
   return (
     <div className="bg-[#F9F9F7] pt-32 pb-24">
        <div className="max-w-5xl mx-auto px-6">
@@ -69,13 +72,14 @@ export const SupportPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-24 min-h-[500px]">
                  {/* Bento Grid Layout */}
                  
-                 {/* Large Primary Item */}
+                 {/* Large Primary Item - Clickable for Setup */}
                  <SupportBentoCard 
                     className="md:col-span-2 md:row-span-1"
                     variant="dark"
                     icon={BookOpen}
                     title="Setup Guide"
-                    desc="Start here. The comprehensive guide to unboxing, placing your Pod, and pairing it with the app for the first time. It's simpler than you think."
+                    desc="Start here. The comprehensive guide to unboxing, placing your Pod, and pairing it with the app for the first time. Tap to view."
+                    onClick={() => onNavigate && onNavigate('setup')}
                  />
                  
                  {/* Warning Item */}

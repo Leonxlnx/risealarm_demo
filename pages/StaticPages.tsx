@@ -19,9 +19,8 @@ export const LegalHub = ({ onBack }: any) => (
           <div className="prose prose-sm text-gray-600">
              <p>Last updated: 11/21/2025. By using Rise Alarm, you agree to our terms.</p>
              <p><strong>1. Acceptance:</strong> Accessing our app or using the pod constitutes agreement.</p>
-             <p><strong>2. Usage:</strong> You must be 13+. Do not misuse the hardware.</p>
-             <p><strong>3. Liability:</strong> We are not responsible if you still oversleep. The system helps, but you must do the work.</p>
-             <p><strong>4. Returns:</strong> 30-day policy applies to undamaged hardware.</p>
+             <p><strong>2. Liability:</strong> We are not responsible if you still oversleep. The system helps, but you must do the work.</p>
+             <p><strong>3. Returns:</strong> 30-day policy applies to undamaged hardware.</p>
           </div>
         </section>
 

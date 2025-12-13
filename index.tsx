@@ -16,6 +16,7 @@ import { TestimonialsSection } from './components/sections/Testimonials';
 import { AboutPage } from './pages/About';
 import { DownloadPage } from './pages/Download';
 import { SupportPage } from './pages/Support';
+import { SetupGuide } from './pages/Setup';
 import { HowItWorksPage } from './pages/HowItWorks';
 import { LegalHub } from './pages/StaticPages';
 import { ShopPage } from './pages/Shop';
@@ -39,7 +40,8 @@ const App = () => {
     switch(currentView) {
       case 'about': return <AboutPage />;
       case 'download': return <DownloadPage />;
-      case 'support': return <SupportPage />;
+      case 'support': return <SupportPage onNavigate={setCurrentView} />;
+      case 'setup': return <SetupGuide onBack={() => setCurrentView('support')} />;
       case 'how-it-works': return <HowItWorksPage />;
       case 'legal': return <LegalHub onBack={() => setCurrentView('home')} />;
       case 'shop': return <ShopPage onAddToCart={addToCart} />;

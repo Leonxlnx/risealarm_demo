@@ -1,41 +1,28 @@
 
 import React from 'react';
-import { Bell, ArrowRight } from 'lucide-react';
-import { Reveal, TextReveal } from '../components/ui/DesignSystem';
+import { ArrowRight } from 'lucide-react';
+import { Reveal } from '../components/ui/DesignSystem';
 
-const PhoneMockup = ({ delay = 0 }: { delay?: number }) => (
+const PhoneMockup = ({ src, delay = 0, className = "" }: { src: string, delay?: number, className?: string }) => (
   <div 
-    className="w-[280px] h-[580px] bg-black rounded-[3rem] border-[8px] border-gray-900 relative overflow-hidden shadow-2xl flex flex-col transform transition-transform hover:scale-105 duration-500"
-    style={{ animation: `float 6s ease-in-out infinite ${delay}s` }}
+    className={`w-[280px] h-[580px] bg-black rounded-[3.5rem] border-[8px] border-gray-900 relative overflow-hidden shadow-2xl flex flex-col transform transition-transform hover:scale-105 duration-500 ${className}`}
+    style={{ 
+        animation: `float 6s ease-in-out infinite ${delay}s`,
+        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
+    }}
   >
      {/* Notch */}
-     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-gray-900 rounded-b-xl z-20"></div>
+     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-gray-900 rounded-b-2xl z-20"></div>
      
-     {/* Screen Content */}
-     <div className="flex-1 bg-white relative pt-12 px-6">
-        <div className="flex justify-between items-center mb-8">
-           <div className="w-8 h-8 bg-gray-100 rounded-full"></div>
-           <div className="w-20 h-4 bg-gray-100 rounded-full"></div>
-        </div>
-        
-        <div className="text-center mt-12 mb-12">
-           <div className="w-32 h-32 rounded-full border-4 border-[#FF6B00] flex items-center justify-center mx-auto mb-6 relative">
-              <Bell size={40} className="text-[#FF6B00]" />
-              <div className="absolute inset-0 border-4 border-[#FF6B00] rounded-full animate-ping opacity-20"></div>
-           </div>
-           <div className="text-4xl font-bold text-[#111]">07:00</div>
-           <div className="text-sm text-gray-400 font-mono uppercase tracking-widest mt-2">Wake Up</div>
-        </div>
+     {/* Reflection/Gloss */}
+     <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50 rounded-[3rem]"></div>
 
-        <div className="space-y-4">
-           <div className="h-16 bg-black text-white rounded-2xl flex items-center justify-center font-bold shadow-lg">
-              Scan Pod to Stop
-           </div>
-           <div className="h-16 bg-gray-100 rounded-2xl flex items-center justify-center text-gray-400 text-sm">
-              Snooze disabled
-           </div>
-        </div>
-     </div>
+     {/* Screen Image */}
+     <img 
+        src={src} 
+        alt="Rise App Screen" 
+        className="w-full h-full object-cover"
+     />
   </div>
 );
 
@@ -60,7 +47,7 @@ export const DownloadPage = () => {
              
              <Reveal delay={200} mode="blur">
                  <p className="text-xl text-gray-500 mb-12 max-w-lg leading-relaxed">
-                    The Rise Alarm App is currently in final beta testing. It will launch on both iOS and Android stores shortly.
+                    The Rise Alarm App is currently in beta. It will launch on the iOS App Store shortly. Android support is coming later this year.
                  </p>
              </Reveal>
 
@@ -77,14 +64,14 @@ export const DownloadPage = () => {
                        </div>
                     </button>
 
-                    {/* Official Style Google Button */}
-                    <button disabled className="bg-black text-white rounded-lg px-4 py-2 flex items-center gap-3 hover:bg-gray-800 transition-colors opacity-80 cursor-not-allowed shadow-xl">
-                       <svg viewBox="0 0 512 512" width="24" height="24" fill="currentColor">
-                          <path fill="#fff" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                    {/* Official Style Google Button - DISABLED / COMING SOON */}
+                    <button disabled className="bg-gray-100 text-gray-400 rounded-lg px-4 py-2 flex items-center gap-3 cursor-not-allowed border border-gray-200">
+                       <svg viewBox="0 0 512 512" width="24" height="24" fill="currentColor" className="grayscale opacity-50">
+                          <path fill="currentColor" d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
                        </svg>
                        <div className="flex flex-col items-start leading-none">
-                          <span className="text-[10px] font-medium">GET IT ON</span>
-                          <span className="text-lg font-bold">Google Play</span>
+                          <span className="text-[10px] font-medium uppercase tracking-wider">Coming Soon</span>
+                          <span className="text-lg font-bold">Android</span>
                        </div>
                     </button>
                  </div>
@@ -109,13 +96,16 @@ export const DownloadPage = () => {
              </Reveal>
           </div>
 
-          <div className="relative h-[600px] flex justify-center items-center">
-             <Reveal delay={200} mode="blur" className="relative w-full h-full flex items-center justify-center">
-                 <div className="absolute top-10 left-10 lg:left-20 rotate-[-6deg] z-0 opacity-50 blur-[2px] scale-95">
-                    <PhoneMockup delay={0.5} />
+          <div className="relative h-[700px] w-full flex items-center justify-center">
+             <Reveal delay={200} mode="blur" className="relative w-full h-full flex items-center justify-center perspective-1000">
+                 {/* Back Phone (AppScreen 1) */}
+                 <div className="absolute top-1/2 left-1/2 transform -translate-x-[60%] -translate-y-1/2 rotate-[-12deg] z-0 opacity-90 scale-90 blur-[1px] hover:blur-0 transition-all duration-500">
+                    <PhoneMockup src="/assets/appscreen1.png" delay={1.5} />
                  </div>
-                 <div className="relative z-10 rotate-[6deg]">
-                    <PhoneMockup />
+                 
+                 {/* Front Phone (AppScreen 2) - Higher Z-Index */}
+                 <div className="absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-1/2 rotate-[6deg] z-20">
+                    <PhoneMockup src="/assets/appscreen2.png" delay={0} />
                  </div>
              </Reveal>
           </div>

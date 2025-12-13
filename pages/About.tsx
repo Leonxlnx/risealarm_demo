@@ -3,15 +3,23 @@ import React from 'react';
 import { Linkedin, MoveRight, Instagram } from 'lucide-react';
 import { ScrollReveal } from '../components/ui/DesignSystem';
 
-const FounderCard = ({ name, title, role, linkedin }: any) => (
+const FounderCard = ({ name, title, role, linkedin, imageSrc }: any) => (
   <div className="group relative">
      <div className="aspect-[3/4] bg-gray-200 rounded-3xl overflow-hidden mb-6 relative">
-        <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-           {/* Placeholder Silhouette */}
-           <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor" opacity="0.5">
-             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-           </svg>
-        </div>
+        {imageSrc ? (
+            <img 
+                src={imageSrc} 
+                alt={name} 
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+        ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-gray-400">
+            {/* Placeholder Silhouette */}
+            <svg width="120" height="120" viewBox="0 0 24 24" fill="currentColor" opacity="0.5">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+            </svg>
+            </div>
+        )}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
      </div>
      <h3 className="text-2xl font-bold">{name}</h3>
@@ -52,12 +60,14 @@ export const AboutPage = () => {
                      <FounderCard 
                         name="Max"
                         title="Co-Founder"
-                        linkedin="#"
+                        linkedin="https://www.linkedin.com/in/maxgallinek/"
+                        imageSrc="/assets/max.png"
                      />
                      <FounderCard 
                         name="Dan"
                         title="Co-Founder"
-                        linkedin="#"
+                        linkedin="https://www.linkedin.com/in/dan-fishman/"
+                        imageSrc="/assets/dan.png"
                      />
                   </div>
               </ScrollReveal>

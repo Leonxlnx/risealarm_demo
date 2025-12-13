@@ -5,10 +5,9 @@ import { Star } from 'lucide-react';
 interface TestimonialCardProps {
   quote: string;
   author: string;
-  role: string;
 }
 
-const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author, role }) => (
+const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author }) => (
     <div className="w-[350px] md:w-[450px] flex-shrink-0 bg-white p-8 rounded-2xl border border-gray-100 shadow-sm mx-4">
         <div className="flex text-[#FF6B00] mb-4 gap-0.5">
             {[1, 2, 3, 4, 5].map((s) => <Star key={s} size={14} fill="currentColor" />)}
@@ -16,24 +15,23 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({ quote, author, role }
         <p className="text-lg font-medium text-[#111] mb-6 leading-relaxed">"{quote}"</p>
         <div>
             <div className="font-bold text-sm text-[#111]">{author}</div>
-            <div className="text-xs text-gray-400 uppercase tracking-widest font-bold">{role}</div>
         </div>
     </div>
 );
 
 export const TestimonialsSection = () => {
     const testimonials1 = [
-        { quote: "I literally used to sleep through 3 alarms. Rise is the only thing that actually forces me out of bed.", author: "Sarah Jenkins", role: "Medical Student" },
-        { quote: "The physical act of walking to the pod changes everything. My brain wakes up before I can argue with it.", author: "Marcus Thorne", role: "Software Engineer" },
-        { quote: "Simple, effective, and annoying in the best way possible. I haven't been late to work in 3 months.", author: "Emily Chen", role: "Graphic Designer" },
-        { quote: "I tried barcode scanners, math problems, everything. Rise is better because it's hardware based. No cheating.", author: "David Ross", role: "Entrepreneur" },
+        { quote: "I literally used to sleep through 3 alarms. Rise is the only thing that actually forces me out of bed.", author: "Sarah J." },
+        { quote: "The physical act of walking to the pod changes everything. My brain wakes up before I can argue with it.", author: "Marcus T." },
+        { quote: "Simple, effective, and annoying in the best way possible. I haven't been late to work in 3 months.", author: "Emily C." },
+        { quote: "I tried barcode scanners, math problems, everything. Rise is better because it's hardware based. No cheating.", author: "David R." },
     ];
 
     const testimonials2 = [
-         { quote: "My morning routine finally exists. I actually have time to make coffee and read before work now.", author: "Jessica Alverez", role: "Teacher" },
-         { quote: "Buying a second pod for the kitchen forced me to walk even further. Best investment for my productivity.", author: "Tom H.", role: "Financial Analyst" },
-         { quote: "The design is super clean. It doesn't look like a cheap gadget on my wall. It looks like it belongs there.", author: "Liam P.", role: "Architect" },
-         { quote: "Finally an alarm that doesn't just annoy me, but actually wakes me up. The movement is key.", author: "Sophie K.", role: "Nurse" }
+         { quote: "My morning routine finally exists. I actually have time to make coffee and read before work now.", author: "Jessica A." },
+         { quote: "Buying a second pod for the kitchen forced me to walk even further. Best investment for my productivity.", author: "Tom H." },
+         { quote: "The design is super clean. It doesn't look like a cheap gadget on my wall. It looks like it belongs there.", author: "Liam P." },
+         { quote: "Finally an alarm that doesn't just annoy me, but actually wakes me up. The movement is key.", author: "Sophie K." }
     ];
 
     return (
@@ -50,7 +48,7 @@ export const TestimonialsSection = () => {
                 
                 <div className="flex animate-marquee">
                     {[...testimonials1, ...testimonials1, ...testimonials1].map((t, i) => (
-                        <TestimonialCard key={i} quote={t.quote} author={t.author} role={t.role} />
+                        <TestimonialCard key={i} quote={t.quote} author={t.author} />
                     ))}
                 </div>
             </div>
@@ -62,7 +60,7 @@ export const TestimonialsSection = () => {
                 
                 <div className="flex animate-marquee-reverse">
                     {[...testimonials2, ...testimonials2, ...testimonials2].map((t, i) => (
-                        <TestimonialCard key={i} quote={t.quote} author={t.author} role={t.role} />
+                        <TestimonialCard key={i} quote={t.quote} author={t.author} />
                     ))}
                 </div>
             </div>
