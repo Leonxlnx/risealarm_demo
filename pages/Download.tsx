@@ -3,24 +3,27 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Reveal } from '../components/ui/DesignSystem';
 
+// Added responsive sizing classes to PhoneMockup
 const PhoneMockup = ({ src, delay = 0, className = "" }: { src: string, delay?: number, className?: string }) => (
   <div 
-    className={`w-[280px] h-[580px] bg-black rounded-[3.5rem] border-[8px] border-gray-900 relative overflow-hidden shadow-2xl flex flex-col transform transition-transform hover:scale-105 duration-500 ${className}`}
+    className={`w-[240px] md:w-[280px] h-[500px] md:h-[580px] bg-black rounded-[2.5rem] md:rounded-[3.5rem] border-[6px] md:border-[8px] border-gray-900 relative overflow-hidden shadow-2xl flex flex-col transform transition-transform hover:scale-105 duration-500 ${className}`}
     style={{ 
         animation: `float 6s ease-in-out infinite ${delay}s`,
         boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)'
     }}
   >
      {/* Notch */}
-     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-7 bg-gray-900 rounded-b-2xl z-20"></div>
+     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 md:w-32 h-6 md:h-7 bg-gray-900 rounded-b-2xl z-20"></div>
      
      {/* Reflection/Gloss */}
-     <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50 rounded-[3rem]"></div>
+     <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-tr from-white/10 via-transparent to-transparent opacity-50 rounded-[2.5rem]"></div>
 
-     {/* Screen Image */}
+     {/* Screen Image - Added loading="lazy" and decoding="async" */}
      <img 
         src={src} 
         alt="Rise App Screen" 
+        loading="lazy"
+        decoding="async"
         className="w-full h-full object-cover"
      />
   </div>
@@ -33,20 +36,20 @@ export const DownloadPage = () => {
        <div className="absolute inset-0 opacity-40 bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
        
        <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
-          <div>
+          <div className="order-2 lg:order-1">
              <Reveal>
                  <span className="text-[#FF6B00] font-mono uppercase tracking-widest text-xs font-bold mb-6 block">Coming Soon</span>
              </Reveal>
              
              <Reveal delay={100} mode="mask">
-                 <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-8">
+                 <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-8">
                     Your morning,<br/>
                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6B00] to-orange-400">upgraded.</span>
                  </h1>
              </Reveal>
              
              <Reveal delay={200} mode="blur">
-                 <p className="text-xl text-gray-500 mb-12 max-w-lg leading-relaxed">
+                 <p className="text-lg md:text-xl text-gray-500 mb-12 max-w-lg leading-relaxed">
                     The Rise Alarm App is currently in beta. It will launch on the iOS App Store shortly. Android support is coming later this year.
                  </p>
              </Reveal>
@@ -96,16 +99,16 @@ export const DownloadPage = () => {
              </Reveal>
           </div>
 
-          <div className="relative h-[700px] w-full flex items-center justify-center">
+          <div className="relative h-[500px] md:h-[700px] w-full flex items-center justify-center order-1 lg:order-2">
              <Reveal delay={200} mode="blur" className="relative w-full h-full flex items-center justify-center perspective-1000">
-                 {/* Back Phone (AppScreen 1) */}
+                 {/* Back Phone (AppScreen 1) - .webp */}
                  <div className="absolute top-1/2 left-1/2 transform -translate-x-[60%] -translate-y-1/2 rotate-[-12deg] z-0 opacity-90 scale-90 blur-[1px] hover:blur-0 transition-all duration-500">
-                    <PhoneMockup src="/assets/appscreen1.png" delay={1.5} />
+                    <PhoneMockup src="/assets/appscreen1.webp" delay={1.5} />
                  </div>
                  
-                 {/* Front Phone (AppScreen 2) - Higher Z-Index */}
+                 {/* Front Phone (AppScreen 2) - .webp - Higher Z-Index */}
                  <div className="absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-1/2 rotate-[6deg] z-20">
-                    <PhoneMockup src="/assets/appscreen2.png" delay={0} />
+                    <PhoneMockup src="/assets/appscreen2.webp" delay={0} />
                  </div>
              </Reveal>
           </div>

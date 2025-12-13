@@ -7,36 +7,44 @@ import { ScrollReveal, ShinyButton } from '../components/ui/DesignSystem';
 const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "default", onClick }: any) => {
     const isDark = variant === "dark";
     const isWarn = variant === "warn";
+    const isClickable = !!onClick; // Check if it's actually interactive
     
     return (
         <div 
             onClick={onClick}
             className={`
-            relative p-8 rounded-[2.5rem] border transition-all duration-500 group overflow-hidden flex flex-col justify-between
-            ${isDark ? 'bg-[#111] text-white border-transparent' : 'bg-white text-[#111] border-gray-100 hover:border-gray-300'}
-            ${isWarn ? 'bg-red-50 border-red-100 hover:border-red-200' : ''}
-            shadow-sm hover:shadow-xl
-            ${onClick ? 'cursor-pointer active:scale-[0.98]' : ''}
+            relative p-8 rounded-[2.5rem] border transition-all duration-500 overflow-hidden flex flex-col justify-between
+            ${isDark ? 'bg-[#111] text-white border-transparent' : 'bg-white text-[#111] border-gray-100'}
+            ${isWarn ? 'bg-red-50 border-red-100' : ''}
+            ${!isDark && !isWarn ? 'hover:border-gray-300' : ''}
+            shadow-sm 
+            ${isClickable ? 'hover:shadow-xl cursor-pointer active:scale-[0.98] group' : ''}
             ${className}
         `}>
-            {/* Hover Gradient */}
-            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none 
-                ${isDark ? 'bg-gradient-to-br from-white/10 to-transparent' : 'bg-gradient-to-br from-gray-50 to-transparent'}
-                ${isWarn ? 'from-red-100/50' : ''}
-            `}></div>
+            {/* Hover Gradient - Only show if clickable */}
+            {isClickable && (
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none 
+                    ${isDark ? 'bg-gradient-to-br from-white/10 to-transparent' : 'bg-gradient-to-br from-gray-50 to-transparent'}
+                `}></div>
+            )}
 
             <div className="relative z-10 flex justify-between items-start mb-6">
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-transform duration-500 group-hover:scale-110 
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-transform duration-500 
+                    ${isClickable ? 'group-hover:scale-110' : ''} 
                     ${isDark ? 'bg-white/10 text-white' : 'bg-gray-50 text-[#111]'}
                     ${isWarn ? 'bg-red-100 text-red-600' : ''}
                 `}>
                     <Icon size={28} strokeWidth={1.5} />
                 </div>
-                <div className={`p-2 rounded-full border transition-colors opacity-0 group-hover:opacity-100
-                    ${isDark ? 'border-white/20 text-white' : 'border-gray-200 text-black'}
-                `}>
-                    <ArrowUpRight size={16} />
-                </div>
+                
+                {/* Arrow only shows if clickable */}
+                {isClickable && (
+                    <div className={`p-2 rounded-full border transition-colors opacity-0 group-hover:opacity-100
+                        ${isDark ? 'border-white/20 text-white' : 'border-gray-200 text-black'}
+                    `}>
+                        <ArrowUpRight size={16} />
+                    </div>
+                )}
             </div>
 
             <div className="relative z-10">
@@ -82,7 +90,7 @@ export const SupportPage = ({ onNavigate }: { onNavigate?: (view: string) => voi
                     onClick={() => onNavigate && onNavigate('setup')}
                  />
                  
-                 {/* Warning Item */}
+                 {/* Warning Item - Information Only */}
                  <SupportBentoCard 
                     className="md:col-span-1"
                     variant="warn"
@@ -91,7 +99,7 @@ export const SupportPage = ({ onNavigate }: { onNavigate?: (view: string) => voi
                     desc="Pod not scanning? Ensure NFC is on. Remove thick cases. Tap top of phone."
                  />
 
-                 {/* Standard Items */}
+                 {/* Standard Item - Information Only */}
                  <SupportBentoCard 
                     className="md:col-span-1"
                     icon={Truck}
