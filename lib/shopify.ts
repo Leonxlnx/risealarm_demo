@@ -6,8 +6,6 @@ const SHOPIFY_DOMAIN = 'rise-10115.myshopify.com';
 const SHOPIFY_STOREFRONT_TOKEN = '48704be0544cb9591e10c70f8ba3c249';
 
 // Initialisiere den Client
-// API Version 2024-01 stellt sicher, dass wir stabile Features nutzen.
-// WICHTIG: Im Shopify Admin muss 'unauthenticated_write_checkouts' aktiv sein!
 export const client = Client.buildClient({
   domain: SHOPIFY_DOMAIN,
   storefrontAccessToken: SHOPIFY_STOREFRONT_TOKEN,
@@ -20,12 +18,17 @@ export const createCheckout = async () => {
     const checkout = await client.checkout.create();
     return checkout;
   } catch (e: any) {
-    // Detailliertes Logging für Debugging
-    console.error("Shopify Checkout Error:", JSON.stringify(e, null, 2));
+    // Logging fix: Error Objekte lassen sich oft nicht stringify-en
+    console.error("--- SHOPIFY ERROR START ---");
+    console.error(e); 
+    if (e.message) console.error("Message:", e.message);
+    if (e.graphQLErrors) console.error("GraphQL Errors:", e.graphQLErrors);
+    console.error("--- SHOPIFY ERROR END ---");
     
-    // Prüfen auf typische Permission Errors
-    if (e.message && e.message.includes("checkoutCreate")) {
-        console.error("URSACHE: Fehlende 'unauthenticated_write_checkouts' Berechtigung im Shopify Admin!");
+    // Check auf Permission Error
+    if (e.message && (e.message.includes("checkoutCreate") || e.message.includes("access denied"))) {
+        console.error("DIAGNOSE: Der Token hat keine Schreibrechte für Checkouts.");
+        console.error("LÖSUNG: Im Shopify Admin unter 'Storefront API Integration' den Haken bei 'unauthenticated_write_checkouts' setzen.");
     }
     return null;
   }
