@@ -95,7 +95,9 @@ export const TiltCard = ({ children, className = "" }: { children?: React.ReactN
 };
 
 // --- 3. TEXT REVEAL (SLOWER, MORE LUXURIOUS) ---
-export const TextReveal = ({ text, className = "", delay = 0 }: { text: React.ReactNode, className?: string, delay?: number }) => {
+// ⚡ Bolt Optimization: Memoized to prevent re-renders when parent state changes (e.g. product loading)
+// but text/delay props remain constant. Saves recalculating word splits and DOM diffing.
+export const TextReveal = React.memo(({ text, className = "", delay = 0 }: { text: React.ReactNode, className?: string, delay?: number }) => {
     if (typeof text !== 'string') return <div className={className}>{text}</div>;
 
     const words = text.split(' ');
@@ -115,7 +117,7 @@ export const TextReveal = ({ text, className = "", delay = 0 }: { text: React.Re
             </div>
         </div>
     );
-};
+});
 
 // --- 4. REVEAL (PRO ANIMATION TIMING) ---
 export const Reveal = ({ children, className = "", delay = 0, mode = 'blur' }: any) => {
@@ -179,7 +181,9 @@ export const SectionTag = ({ text }: { text: string }) => (
 );
 
 // --- VISUAL ASSETS (RESPONSIVE POD) ---
-export const ThePod = ({ scale = 1, className = "", highlight = 'none' }: { scale?: number, className?: string, highlight?: string }) => {
+// ⚡ Bolt Optimization: Memoized to prevent expensive image/DOM re-renders when parent components
+// update state (e.g. 'ShopPage' loading or 'Reveal' visibility). Props are typically static.
+export const ThePod = React.memo(({ scale = 1, className = "", highlight = 'none' }: { scale?: number, className?: string, highlight?: string }) => {
   return (
     <div 
       className={`relative group perspective-1000 mx-auto ${className}`}
@@ -204,4 +208,4 @@ export const ThePod = ({ scale = 1, className = "", highlight = 'none' }: { scal
        </div>
     </div>
   );
-};
+});
