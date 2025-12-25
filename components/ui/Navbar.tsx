@@ -99,6 +99,7 @@ export const Navbar = ({ cartCount }: { cartCount: number }) => {
                        <Link 
                           to="/cart"
                           className="relative w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#111] hover:text-[#FF6B00] transition-all duration-300 border border-gray-100 shadow-md group active:scale-95"
+                          aria-label={`View cart${cartCount > 0 ? `, ${cartCount} item${cartCount === 1 ? '' : 's'}` : ''}`}
                        >
                           <ShoppingBag size={18} className="group-hover:scale-110 transition-transform" />
                           {cartCount > 0 && (
@@ -113,6 +114,9 @@ export const Navbar = ({ cartCount }: { cartCount: number }) => {
                <button 
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                   className="md:hidden w-9 h-9 bg-gray-50 rounded-full flex items-center justify-center text-[#111] border border-gray-200 shadow-sm active:scale-90 transition-transform"
+                  aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                  aria-expanded={mobileMenuOpen}
+                  aria-controls="mobile-menu"
                >
                   {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
                </button>
@@ -122,6 +126,7 @@ export const Navbar = ({ cartCount }: { cartCount: number }) => {
 
       {/* Mobile Menu Overlay */}
       <div 
+        id="mobile-menu"
         className={`fixed inset-0 bg-[#F9F9F7] z-40 flex flex-col items-center justify-center transition-all duration-[800ms] ease-[cubic-bezier(0.87,0,0.13,1)] ${mobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-full invisible'}`}
       >
           <div className="flex flex-col items-center gap-6 text-center">
