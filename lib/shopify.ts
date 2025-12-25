@@ -1,11 +1,15 @@
-
 import Client from 'shopify-buy';
 
 // --- KONFIGURATION ---
-const SHOPIFY_DOMAIN = 'rise-10115.myshopify.com'; 
-const SHOPIFY_STOREFRONT_TOKEN = '48704be0544cb9591e10c70f8ba3c249';
-// Using 2025-01 to ensure latest features, though 2024-01 works too.
+// ✅ GOOD: No hardcoded secrets. Using environment variables.
+const SHOPIFY_DOMAIN = import.meta.env.VITE_SHOPIFY_DOMAIN;
+const SHOPIFY_STOREFRONT_TOKEN = import.meta.env.VITE_SHOPIFY_STOREFRONT_TOKEN;
 const API_VERSION = '2025-01'; 
+
+// Validate environment variables
+if (!SHOPIFY_DOMAIN || !SHOPIFY_STOREFRONT_TOKEN) {
+  throw new Error('Missing Shopify environment variables: VITE_SHOPIFY_DOMAIN or VITE_SHOPIFY_STOREFRONT_TOKEN');
+}
 
 // Initialisiere den alten Client für Produkt-Abfragen (Read-Only ist meist ok)
 export const client = Client.buildClient({
