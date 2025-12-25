@@ -24,13 +24,15 @@ export const ShopPage = ({ onAddToCart }: { onAddToCart: (variantId?: string) =>
         const shopifyProduct = await fetchProductByHandle('rise-pod');
         
         if (shopifyProduct) {
+            const variant = shopifyProduct.variants[0];
             setProduct({
                 title: shopifyProduct.title,
                 // Nimm die erste Variante (meistens gibt es nur eine beim Pod)
-                price: shopifyProduct.variants[0]?.price.amount || "25.00",
+                price: variant?.price?.amount || "25.00",
                 compareAtPrice: "50.00", // Manuell setzen oder aus Shopify Metafields holen
-                id: shopifyProduct.variants[0]?.id, // WICHTIG für den Checkout
-                available: shopifyProduct.variants[0]?.available
+                id: variant?.id, // WICHTIG für den Checkout
+                // Cast to any because typescript definition for shopify-buy might be missing 'available' or it is named 'availableForSale'
+                available: (variant as any)?.available ?? (variant as any)?.availableForSale ?? true
             });
         } else {
             console.log("Produkt nicht gefunden, lade Fallback");

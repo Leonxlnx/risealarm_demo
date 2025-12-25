@@ -1,17 +1,18 @@
 
 import React from 'react';
 import { ArrowLeft, CreditCard, Lock } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-export const CheckoutPage = ({ onBack }: any) => {
+export const CheckoutPage = () => {
   return (
     <div className="min-h-screen bg-[#F9F9F7] pt-24 px-6 pb-24">
        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
           
           {/* LEFT: FORM */}
           <div>
-            <button onClick={onBack} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-8">
+            <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-8">
                 <ArrowLeft size={16} /> Back to Store
-            </button>
+            </Link>
             <h2 className="text-3xl font-bold mb-8">Checkout</h2>
             
             <form className="space-y-8">

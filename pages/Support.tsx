@@ -2,31 +2,19 @@
 import React from 'react';
 import { Mail, BookOpen, AlertCircle, Truck, RefreshCw, ChevronRight, ArrowUpRight } from 'lucide-react';
 import { FAQSection } from '../components/sections/FAQ';
-import { ScrollReveal, ShinyButton } from '../components/ui/DesignSystem';
+import { ScrollReveal } from '../components/ui/DesignSystem';
+import { Link } from 'react-router-dom';
 
-const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "default", onClick }: any) => {
+const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "default", to, onClick }: any) => {
     const isDark = variant === "dark";
     const isWarn = variant === "warn";
-    const isClickable = !!onClick; // Check if it's actually interactive
+    const isClickable = !!to || !!onClick; 
     
-    return (
-        <div 
-            onClick={onClick}
-            className={`
-            relative p-8 rounded-[2.5rem] border transition-all duration-500 overflow-hidden flex flex-col justify-between
-            ${isDark ? 'bg-[#111] text-white border-transparent' : 'bg-white text-[#111] border-gray-100'}
-            ${isWarn ? 'bg-red-50 border-red-100' : ''}
-            ${!isDark && !isWarn ? 'hover:border-gray-300' : ''}
-            shadow-sm 
-            ${isClickable ? 'hover:shadow-xl cursor-pointer active:scale-[0.98] group' : ''}
-            ${className}
-        `}>
-            {/* Hover Gradient - Only show if clickable */}
-            {isClickable && (
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none 
-                    ${isDark ? 'bg-gradient-to-br from-white/10 to-transparent' : 'bg-gradient-to-br from-gray-50 to-transparent'}
-                `}></div>
-            )}
+    const content = (
+        <>
+            <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none 
+                ${isDark ? 'bg-gradient-to-br from-white/10 to-transparent' : 'bg-gradient-to-br from-gray-50 to-transparent'}
+            `}></div>
 
             <div className="relative z-10 flex justify-between items-start mb-6">
                 <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-transform duration-500 
@@ -37,7 +25,6 @@ const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "
                     <Icon size={28} strokeWidth={1.5} />
                 </div>
                 
-                {/* Arrow only shows if clickable */}
                 {isClickable && (
                     <div className={`p-2 rounded-full border transition-colors opacity-0 group-hover:opacity-100
                         ${isDark ? 'border-white/20 text-white' : 'border-gray-200 text-black'}
@@ -53,11 +40,27 @@ const SupportBentoCard = ({ icon: Icon, title, desc, className = "", variant = "
                     {desc}
                 </p>
             </div>
-        </div>
+        </>
     );
+
+    const containerClasses = `
+        relative p-8 rounded-[2.5rem] border transition-all duration-500 overflow-hidden flex flex-col justify-between
+        ${isDark ? 'bg-[#111] text-white border-transparent' : 'bg-white text-[#111] border-gray-100'}
+        ${isWarn ? 'bg-red-50 border-red-100' : ''}
+        ${!isDark && !isWarn ? 'hover:border-gray-300' : ''}
+        shadow-sm 
+        ${isClickable ? 'hover:shadow-xl cursor-pointer active:scale-[0.98] group' : ''}
+        ${className}
+    `;
+
+    if (to) {
+        return <Link to={to} className={containerClasses}>{content}</Link>;
+    }
+
+    return <div onClick={onClick} className={containerClasses}>{content}</div>;
 };
 
-export const SupportPage = ({ onNavigate }: { onNavigate?: (view: string) => void }) => {
+export const SupportPage = () => {
   return (
     <div className="bg-[#F9F9F7] pt-32 pb-24">
        <div className="max-w-5xl mx-auto px-6">
@@ -87,7 +90,7 @@ export const SupportPage = ({ onNavigate }: { onNavigate?: (view: string) => voi
                     icon={BookOpen}
                     title="Setup Guide"
                     desc="Start here. The comprehensive guide to unboxing, placing your Pod, and pairing it with the app for the first time. Tap to view."
-                    onClick={() => onNavigate && onNavigate('setup')}
+                    to="/setup"
                  />
                  
                  {/* Warning Item - Information Only */}

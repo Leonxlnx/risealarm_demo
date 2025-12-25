@@ -3,7 +3,7 @@ import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Reveal, TextReveal, ShinyButton } from '../ui/DesignSystem';
 
-export const Hero = () => {
+export const Hero = ({ onPreOrder }: { onPreOrder?: () => void }) => {
   return (
     <section className="relative min-h-[100dvh] w-full flex items-center overflow-hidden bg-[#F9F9F7] pt-24 md:pt-0">
       
@@ -53,7 +53,7 @@ export const Hero = () => {
              <Reveal mode="blur" delay={900}>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start w-full sm:w-auto">
                   <ShinyButton 
-                    onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={onPreOrder}
                     className="px-10 py-5 text-lg w-full sm:w-auto"
                   >
                     Pre-Order Now — $25

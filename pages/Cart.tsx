@@ -3,13 +3,13 @@ import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Trash2, ShieldCheck, ArrowRight, Loader2, AlertCircle, ShoppingBag } from 'lucide-react';
 import { ThePod } from '../components/ui/DesignSystem';
 import { createCartWithItem, fetchProductByHandle } from '../lib/shopify';
+import { Link } from 'react-router-dom';
 
 interface CartProps {
-    onBack: () => void;
     cartVariantId?: string; // The Shopify ID passed from ShopPage
 }
 
-export const CartPage = ({ onBack, cartVariantId }: CartProps) => {
+export const CartPage = ({ cartVariantId }: CartProps) => {
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [isCheckingOut, setIsCheckingOut] = useState(false);
@@ -90,12 +90,12 @@ export const CartPage = ({ onBack, cartVariantId }: CartProps) => {
              </div>
              <h2 className="text-3xl font-bold mb-4 text-[#111]">Your cart is empty.</h2>
              <p className="text-gray-500 mb-8 max-w-md">Looks like you haven't added the Rise Pod yet. It's time to upgrade your mornings.</p>
-             <button 
-                onClick={onBack} 
+             <Link 
+                to="/shop" 
                 className="px-8 py-4 bg-[#111] text-white rounded-full font-bold hover:bg-[#FF6B00] transition-colors shadow-lg"
              >
                 Shop Now
-             </button>
+             </Link>
         </div>
       );
   }
@@ -103,9 +103,9 @@ export const CartPage = ({ onBack, cartVariantId }: CartProps) => {
   return (
     <div className="min-h-screen bg-[#F9F9F7] pt-32 px-6 pb-24">
        <div className="max-w-4xl mx-auto">
-            <button onClick={onBack} className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors">
+            <Link to="/shop" className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors">
                 <ArrowLeft size={16} /> Continue Shopping
-            </button>
+            </Link>
 
             <h1 className="text-4xl font-bold mb-12">Your Cart</h1>
 

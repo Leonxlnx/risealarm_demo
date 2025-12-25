@@ -2,6 +2,7 @@
 import React from 'react';
 import { ArrowLeft, Check, Smartphone, MoveRight, Wifi } from 'lucide-react';
 import { ScrollReveal } from '../components/ui/DesignSystem';
+import { Link } from 'react-router-dom';
 
 const SetupStep = ({ number, title, desc, icon: Icon }: any) => (
   <div className="flex gap-6 md:gap-12 items-start relative pb-16 last:pb-0">
@@ -25,16 +26,16 @@ const SetupStep = ({ number, title, desc, icon: Icon }: any) => (
   </div>
 );
 
-export const SetupGuide = ({ onBack }: { onBack: () => void }) => {
+export const SetupGuide = () => {
   return (
     <div className="min-h-screen bg-[#F9F9F7] pt-32 px-6 pb-24">
        <div className="max-w-3xl mx-auto">
-          <button 
-            onClick={onBack}
-            className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors"
+          <Link 
+            to="/support"
+            className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors"
           >
             <ArrowLeft size={16} /> Back to Support
-          </button>
+          </Link>
           
           <ScrollReveal>
              <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#111]">Setup Your Pod</h1>

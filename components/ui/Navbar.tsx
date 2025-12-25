@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { ShoppingBag, Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
-export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: string) => void, cartCount: number }) => {
+export const Navbar = ({ cartCount }: { cartCount: number }) => {
   const [scrolled, setScrolled] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -21,11 +23,12 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
     }
   }, [mobileMenuOpen]);
 
-  const isExpanded = !scrolled || hovered || mobileMenuOpen;
-  const handleMobileNav = (view: string) => {
+  // Close mobile menu on route change
+  useEffect(() => {
     setMobileMenuOpen(false);
-    onViewChange(view);
-  };
+  }, [location.pathname]);
+
+  const isExpanded = !scrolled || hovered || mobileMenuOpen;
 
   return (
     <>
@@ -42,16 +45,15 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
          >
             {/* Left: Logo */}
             <div className="flex-1 flex justify-start">
-                <div className="flex items-center gap-2 md:gap-3 cursor-pointer group shrink-0" onClick={() => handleMobileNav('home')}>
+                <Link to="/" className="flex items-center gap-2 md:gap-3 cursor-pointer group shrink-0">
                    <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-12" />
-                   {/* MOBILE FIX: Text always visible (opacity-100), Logic only applies to desktop (md:) */}
                    <span className={`font-bold text-sm md:text-base tracking-tight text-[#111] transition-all duration-500 opacity-100 translate-x-0 ${isExpanded ? 'md:opacity-100 md:translate-x-0' : 'md:opacity-100 md:translate-x-0'}`}>
                       Rise
                    </span>
-                </div>
+                </Link>
             </div>
 
-            {/* Center: Desktop Links - Increased font size to text-sm (14px) approx 33% bigger */}
+            {/* Center: Desktop Links */}
             <div className="hidden md:flex flex-0 shrink-0 justify-center">
                 <div 
                   className={`
@@ -59,15 +61,19 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
                     ${isExpanded ? 'opacity-100 max-w-[500px] px-4' : 'opacity-0 max-w-0 px-0'}
                   `}
                 >
-                   {['how-it-works', 'about', 'support'].map((item) => (
-                       <button 
-                        key={item}
-                        onClick={() => onViewChange(item)} 
-                        className="hover:text-[#FF6B00] transition-colors whitespace-nowrap relative group capitalize"
+                   {[
+                     { path: '/how-it-works', label: 'How It Works' },
+                     { path: '/about', label: 'About' },
+                     { path: '/support', label: 'Support' }
+                   ].map((item) => (
+                       <Link 
+                        key={item.path}
+                        to={item.path}
+                        className="hover:text-[#FF6B00] transition-colors whitespace-nowrap relative group"
                        >
-                           {item.replace(/-/g, ' ')}
+                           {item.label}
                            <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#FF6B00] transition-all duration-300 group-hover:w-full"></span>
-                       </button>
+                       </Link>
                    ))}
                 </div>
             </div>
@@ -75,23 +81,23 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
             {/* Right: Actions */}
             <div className="flex-1 flex justify-end items-center gap-2 md:gap-3">
                <div className="hidden md:flex items-center gap-3">
-                   <button 
-                     onClick={() => onViewChange('download')}
+                   <Link 
+                     to="/download"
                      className={`bg-gray-100 text-[#111] px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors ${!isExpanded ? 'hidden' : ''}`}
                    >
                      App
-                   </button>
+                   </Link>
                    
                    <div className="flex items-center gap-2">
-                       <button 
-                         onClick={() => onViewChange('shop')}
+                       <Link 
+                         to="/shop"
                          className="bg-[#111] text-white px-5 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:bg-[#FF6B00] transition-all duration-300 shadow-lg hover:shadow-[#FF6B00]/30 hover:-translate-y-0.5"
                        >
                          Pre-Order
-                       </button>
+                       </Link>
                        
-                       <button 
-                          onClick={() => onViewChange('cart')}
+                       <Link 
+                          to="/cart"
                           className="relative w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#111] hover:text-[#FF6B00] transition-all duration-300 border border-gray-100 shadow-md group active:scale-95"
                        >
                           <ShoppingBag size={18} className="group-hover:scale-110 transition-transform" />
@@ -100,7 +106,7 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
                                   {cartCount}
                               </div>
                           )}
-                       </button>
+                       </Link>
                    </div>
                </div>
 
@@ -114,27 +120,35 @@ export const Navbar = ({ onViewChange, cartCount }: { onViewChange: (view: strin
          </nav>
       </div>
 
+      {/* Mobile Menu Overlay */}
       <div 
         className={`fixed inset-0 bg-[#F9F9F7] z-40 flex flex-col items-center justify-center transition-all duration-[800ms] ease-[cubic-bezier(0.87,0,0.13,1)] ${mobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-full invisible'}`}
       >
           <div className="flex flex-col items-center gap-6 text-center">
-             {['home', 'how-it-works', 'about', 'shop', 'support', 'download'].map((view, i) => (
-                 <button 
-                    key={view}
-                    onClick={() => handleMobileNav(view)} 
-                    className="text-3xl md:text-4xl font-bold text-[#111] hover:text-[#FF6B00] transition-colors transform hover:scale-105 duration-300 capitalize"
+             {[
+               { path: '/', label: 'Home' },
+               { path: '/how-it-works', label: 'How It Works' },
+               { path: '/about', label: 'About' },
+               { path: '/shop', label: 'Shop' },
+               { path: '/support', label: 'Support' },
+               { path: '/download', label: 'Download App' }
+             ].map((item, i) => (
+                 <Link 
+                    key={item.path}
+                    to={item.path}
+                    className="text-3xl md:text-4xl font-bold text-[#111] hover:text-[#FF6B00] transition-colors transform hover:scale-105 duration-300"
                     style={{ transitionDelay: `${i * 50}ms` }}
                  >
-                    {view.replace(/-/g, ' ')}
-                 </button>
+                    {item.label}
+                 </Link>
              ))}
              
-             <button 
-                 onClick={() => handleMobileNav('cart')}
+             <Link 
+                 to="/cart"
                  className="mt-8 flex items-center gap-2 text-sm font-mono uppercase tracking-widest text-gray-500"
              >
                 <ShoppingBag size={16} /> View Cart ({cartCount})
-             </button>
+             </Link>
           </div>
       </div>
     </>

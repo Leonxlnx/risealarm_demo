@@ -1,13 +1,13 @@
 
 import React, { useEffect } from 'react';
 import { ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface LegalHubProps {
-    onBack: () => void;
     section?: 'terms' | 'privacy' | 'all';
 }
 
-export const LegalHub = ({ onBack, section = 'all' }: LegalHubProps) => {
+export const LegalHub = ({ section = 'all' }: LegalHubProps) => {
   // Scroll Logic
   useEffect(() => {
     if (section === 'terms') {
@@ -24,12 +24,12 @@ export const LegalHub = ({ onBack, section = 'all' }: LegalHubProps) => {
   return (
     <div className="min-h-screen bg-[#F9F9F7] pt-32 px-6 pb-24">
       <div className="max-w-3xl mx-auto">
-        <button 
-          onClick={onBack}
-          className="flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors"
+        <Link 
+          to="/"
+          className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-gray-500 hover:text-[#FF6B00] mb-12 transition-colors"
         >
-          <ArrowLeft size={16} /> Back
-        </button>
+          <ArrowLeft size={16} /> Back Home
+        </Link>
         
         <h1 className="text-4xl md:text-5xl font-bold mb-16 text-[#111]">Legal Information</h1>
         
