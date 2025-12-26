@@ -3,7 +3,8 @@ import React from 'react';
 import { Check, X } from 'lucide-react';
 import { Reveal } from '../ui/DesignSystem';
 
-export const ComparisonSection = () => {
+// OPTIMIZATION: Memoize component to prevent re-renders when parent updates
+export const ComparisonSection = React.memo(function ComparisonSection() {
   return (
     <section className="py-32 px-6 bg-[#F9F9F7]">
         <div className="max-w-[1200px] mx-auto">
@@ -82,4 +83,4 @@ export const ComparisonSection = () => {
         </div>
     </section>
   );
-};
+});

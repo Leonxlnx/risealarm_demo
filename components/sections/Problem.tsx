@@ -3,7 +3,8 @@ import React from 'react';
 import { SectionTag, Reveal } from '../ui/DesignSystem';
 import { Clock, Smartphone, BatteryWarning, XCircle } from 'lucide-react';
 
-export const ProblemSection = () => {
+// OPTIMIZATION: Memoize component to prevent re-renders when parent updates
+export const ProblemSection = React.memo(function ProblemSection() {
   return (
     <section className="bg-[#0A0A0A] text-white py-24 md:py-32 rounded-[2rem] md:rounded-[3rem] relative z-20 mx-2 md:mx-6 overflow-hidden mt-12 lg:mt-24 mb-16 lg:mb-32">
       <div className="absolute inset-0 opacity-[0.05] bg-[linear-gradient(45deg,#222_25%,transparent_25%,transparent_75%,#222_75%,#222),linear-gradient(45deg,#222_25%,transparent_25%,transparent_75%,#222_75%,#222)] bg-[length:40px_40px] bg-[position:0_0,20px_20px]"></div>
@@ -55,4 +56,4 @@ export const ProblemSection = () => {
       </div>
     </section>
   );
-};
+});
