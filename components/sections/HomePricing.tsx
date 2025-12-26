@@ -3,7 +3,8 @@ import React from 'react';
 import { ArrowRight, Check, ShieldCheck } from 'lucide-react';
 import { ScrollReveal, ThePod } from '../ui/DesignSystem';
 
-export const HomePricing = ({ onBuy }: { onBuy: () => void }) => {
+// OPTIMIZATION: Memoize component to prevent re-renders when parent updates
+export const HomePricing = React.memo(function HomePricing({ onBuy }: { onBuy: () => void }) {
   return (
     <section id="pricing" className="py-16 md:py-24 bg-[#F9F9F7] px-4 md:px-6">
         <div className="max-w-[1400px] mx-auto">
@@ -75,4 +76,4 @@ export const HomePricing = ({ onBuy }: { onBuy: () => void }) => {
         </div>
     </section>
   );
-};
+});
