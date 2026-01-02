@@ -100,7 +100,7 @@ export const DownloadPage = () => {
              <Reveal delay={400} mode="blur">
                  <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-lg max-w-md transition-all duration-300">
                      {status === 'success' ? (
-                        <div className="flex flex-col items-center justify-center text-center py-4 animate-in fade-in duration-500">
+                        <div aria-live="polite" className="flex flex-col items-center justify-center text-center py-4 animate-in fade-in duration-500">
                            <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600 mb-3">
                               <Check size={24} />
                            </div>
@@ -108,7 +108,7 @@ export const DownloadPage = () => {
                            <p className="text-sm text-gray-500">We'll let you know as soon as we launch.</p>
                            <button
                              onClick={() => setStatus('idle')}
-                             className="mt-4 text-sm font-bold text-[#FF6B00] hover:underline"
+                             className="mt-4 text-sm font-bold text-[#FF6B00] hover:underline focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-[#FF6B00] rounded"
                            >
                              Add another email
                            </button>
@@ -117,21 +117,23 @@ export const DownloadPage = () => {
                         <>
                            <h3 className="font-bold text-[#111] mb-2">Don't miss the launch.</h3>
                            <p className="text-sm text-gray-500 mb-4">Join the waitlist to get notified when the app goes live.</p>
-                           <form onSubmit={handleSubmit} className="flex gap-2">
+                           <form onSubmit={handleSubmit} className="flex gap-2 relative">
+                              <label htmlFor="email" className="sr-only">Email address</label>
                               <input
+                                id="email"
                                 type="email"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter your email"
-                                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FF6B00] transition-colors disabled:opacity-50"
+                                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FF6B00] focus:ring-1 focus:ring-[#FF6B00] transition-all disabled:opacity-50"
                                 disabled={status === 'loading'}
                               />
                               <button
                                 type="submit"
                                 disabled={status === 'loading'}
                                 aria-label="Join waitlist"
-                                className="bg-[#FF6B00] text-white px-4 py-3 rounded-xl font-bold hover:bg-[#e05e00] transition-colors flex items-center justify-center disabled:opacity-70 disabled:cursor-wait min-w-[3.5rem]"
+                                className="bg-[#FF6B00] text-white px-4 py-3 rounded-xl font-bold hover:bg-[#e05e00] focus:ring-2 focus:ring-offset-2 focus:ring-[#FF6B00] transition-all flex items-center justify-center disabled:opacity-70 disabled:cursor-wait min-w-[3.5rem] outline-none"
                               >
                                  {status === 'loading' ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
                               </button>
