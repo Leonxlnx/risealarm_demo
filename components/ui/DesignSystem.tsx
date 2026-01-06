@@ -2,21 +2,26 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 // --- SHARED HOOKS ---
-export const useScrollProgress = () => {
-  const [scrollProgress, setScrollProgress] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => {
-      requestAnimationFrame(() => {
-        const totalScroll = document.documentElement.scrollTop;
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scroll = totalScroll / windowHeight;
-        setScrollProgress(scroll);
-      });
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  return scrollProgress;
+// REMOVED: useScrollProgress (unused)
+
+// --- SHARED OBSERVER LOGIC ---
+const observerCallbacks = new WeakMap<Element, () => void>();
+let sharedObserver: IntersectionObserver | null = null;
+
+const getSharedObserver = () => {
+    if (!sharedObserver) {
+        sharedObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const callback = observerCallbacks.get(entry.target);
+                    if (callback) callback();
+                    sharedObserver?.unobserve(entry.target);
+                    observerCallbacks.delete(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+    }
+    return sharedObserver;
 };
 
 // --- 1. SHINY BUTTON (THE "GEILER" BUTTON) ---
@@ -123,14 +128,19 @@ export const Reveal = ({ children, className = "", delay = 0, mode = 'blur' }: a
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setIsVisible(true);
-                observer.unobserve(entry.target);
+        if (!ref.current) return;
+
+        // Use shared observer
+        const observer = getSharedObserver();
+        observerCallbacks.set(ref.current, () => setIsVisible(true));
+        observer.observe(ref.current);
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current);
+                observerCallbacks.delete(ref.current);
             }
-        }, { threshold: 0.1 });
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
+        };
     }, []);
 
     // INCREASED DURATION TO 1.2s for "Geiler" feel
