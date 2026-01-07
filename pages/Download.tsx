@@ -118,13 +118,16 @@ export const DownloadPage = () => {
                            <h3 className="font-bold text-[#111] mb-2">Don't miss the launch.</h3>
                            <p className="text-sm text-gray-500 mb-4">Join the waitlist to get notified when the app goes live.</p>
                            <form onSubmit={handleSubmit} className="flex gap-2">
+                              <label htmlFor="waitlist-email" className="sr-only">Email address</label>
                               <input
+                                id="waitlist-email"
                                 type="email"
+                                autoComplete="email"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Enter your email"
-                                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FF6B00] transition-colors disabled:opacity-50"
+                                className="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-[#FF6B00] focus:ring-2 focus:ring-[#FF6B00]/20 transition-all disabled:opacity-50"
                                 disabled={status === 'loading'}
                               />
                               <button
