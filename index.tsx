@@ -8,10 +8,12 @@ import { Instagram, Linkedin, Loader2 } from 'lucide-react';
 // Modular Imports
 import { Navbar } from './components/ui/Navbar';
 import { Hero } from './components/sections/Hero';
-import { ProblemSection } from './components/sections/Problem';
-import { ComparisonSection } from './components/sections/Comparison';
-import { HomePricing } from './components/sections/HomePricing';
-import { TestimonialsSection } from './components/sections/Testimonials';
+
+// Lazy Load Sections
+const ProblemSection = React.lazy(() => import('./components/sections/Problem').then(module => ({ default: module.ProblemSection })));
+const ComparisonSection = React.lazy(() => import('./components/sections/Comparison').then(module => ({ default: module.ComparisonSection })));
+const HomePricing = React.lazy(() => import('./components/sections/HomePricing').then(module => ({ default: module.HomePricing })));
+const TestimonialsSection = React.lazy(() => import('./components/sections/Testimonials').then(module => ({ default: module.TestimonialsSection })));
 
 // Lazy Load Pages
 const AboutPage = React.lazy(() => import('./pages/About').then(module => ({ default: module.AboutPage })));
@@ -33,6 +35,12 @@ const PageLoader = () => (
   </div>
 );
 
+const SectionLoader = () => (
+  <div className="py-24 flex justify-center items-center">
+    <Loader2 className="animate-spin text-gray-300" size={32} />
+  </div>
+);
+
 // ScrollToTop Component
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -46,10 +54,12 @@ const ScrollToTop = () => {
 const HomePage = ({ onBuy }: { onBuy: () => void }) => (
   <>
     <Hero onPreOrder={onBuy} />
-    <ProblemSection />
-    <ComparisonSection />
-    <TestimonialsSection />
-    <HomePricing onBuy={onBuy} />
+    <Suspense fallback={<SectionLoader />}>
+      <ProblemSection />
+      <ComparisonSection />
+      <TestimonialsSection />
+      <HomePricing onBuy={onBuy} />
+    </Suspense>
   </>
 );
 
