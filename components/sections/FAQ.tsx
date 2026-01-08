@@ -1,29 +1,39 @@
 
-import React, { useState } from 'react';
+import React, { useState, useId } from 'react';
 import { Plus, Minus } from 'lucide-react';
 import { ScrollReveal } from '../ui/DesignSystem';
 
 const FAQItem = ({ question, answer, isOpen, onClick }: any) => {
+  const contentId = useId();
+
   return (
-    <div 
-      className={`border-b border-gray-200 py-8 md:py-10 cursor-pointer group transition-all duration-500 ${isOpen ? 'bg-transparent' : 'hover:bg-transparent'}`}
-      onClick={onClick}
-    >
-      <div className="flex justify-between items-start md:items-center gap-6">
-         <h4 className={`text-xl md:text-2xl font-bold transition-all duration-300 text-left leading-tight tracking-tight ${isOpen ? 'text-[#FF6B00]' : 'text-[#111] group-hover:text-gray-600'}`}>
-            {question}
-         </h4>
-         <div className={`shrink-0 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-[#FF6B00] border-[#FF6B00] rotate-180 text-white' : 'bg-transparent border-gray-200 text-gray-400 group-hover:border-[#111] group-hover:text-[#111]'}`}>
-            {isOpen ? <Minus size={20} /> : <Plus size={20} />}
-         </div>
-      </div>
-      
-      <div className={`grid transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-6' : 'grid-rows-[0fr] opacity-0 mt-0'}`}>
-         <div className="overflow-hidden">
-            <p className="text-lg text-gray-500 leading-relaxed max-w-3xl text-left pl-0 md:pl-0">
-               {answer}
-            </p>
-         </div>
+    <div className="border-b border-gray-200">
+      <button
+        type="button"
+        aria-expanded={isOpen}
+        aria-controls={contentId}
+        className={`w-full text-left pt-8 md:pt-10 group flex justify-between items-start md:items-center gap-6 bg-transparent hover:bg-transparent transition-all duration-500 ${isOpen ? 'pb-0' : 'pb-8 md:pb-10'}`}
+        onClick={onClick}
+      >
+        <h4 className={`text-xl md:text-2xl font-bold transition-all duration-300 leading-tight tracking-tight ${isOpen ? 'text-[#FF6B00]' : 'text-[#111] group-hover:text-gray-600'}`}>
+          {question}
+        </h4>
+        <div className={`shrink-0 w-10 h-10 rounded-full border-2 flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-[#FF6B00] border-[#FF6B00] rotate-180 text-white' : 'bg-transparent border-gray-200 text-gray-400 group-hover:border-[#111] group-hover:text-[#111]'}`}>
+          {isOpen ? <Minus size={20} /> : <Plus size={20} />}
+        </div>
+      </button>
+
+      <div
+        id={contentId}
+        role="region"
+        aria-hidden={!isOpen}
+        className={`grid transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? 'grid-rows-[1fr] opacity-100 pb-8 md:pb-10' : 'grid-rows-[0fr] opacity-0 pb-0'}`}
+      >
+        <div className="overflow-hidden pt-6">
+          <p className="text-lg text-gray-500 leading-relaxed max-w-3xl text-left pl-0 md:pl-0">
+            {answer}
+          </p>
+        </div>
       </div>
     </div>
   );

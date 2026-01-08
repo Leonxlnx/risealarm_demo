@@ -16,6 +16,7 @@
     "shopify-buy": "^2.21.1"
   },
   "devDependencies": {
+    "@types/node": "^25.0.3",
     "@types/react": "^18.2.64",
     "@types/react-dom": "^18.2.21",
     "@types/shopify-buy": "^2.16.4",
