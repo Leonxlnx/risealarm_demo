@@ -139,15 +139,15 @@ const Footer = () => (
             </div>
             
             <div className="flex gap-6 items-center">
-                <a href="https://www.instagram.com/risealarmapp/" target="_blank" className="hover:text-[#E1306C] transition-colors p-2 bg-white/5 rounded-full">
+                <a href="https://www.instagram.com/risealarmapp/" aria-label="Instagram" target="_blank" className="hover:text-[#E1306C] transition-colors p-2 bg-white/5 rounded-full">
                     <Instagram size={20} />
                 </a>
-                <a href="https://www.tiktok.com/@risedaily.app" target="_blank" className="hover:text-white transition-colors p-2 bg-white/5 rounded-full">
+                <a href="https://www.tiktok.com/@risedaily.app" aria-label="TikTok" target="_blank" className="hover:text-white transition-colors p-2 bg-white/5 rounded-full">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.589 6.686a4.793 4.793 0 0 1-3.77-4.245V2h-3.445v13.672a2.896 2.896 0 0 1-5.201 1.743l-.002-.001.002.001a2.895 2.895 0 0 1 3.183-4.51v-3.5a6.329 6.329 0 0 0-5.394 10.692 6.33 6.33 0 0 0 10.857-4.424V8.687a8.182 8.182 0 0 0 4.773 1.526V6.79a4.831 4.831 0 0 1-1.003-.104z"/>
                     </svg>
                 </a>
-                <a href="https://www.linkedin.com/company/risedailyapp/" target="_blank" className="hover:text-[#0077b5] transition-colors p-2 bg-white/5 rounded-full">
+                <a href="https://www.linkedin.com/company/risedailyapp/" aria-label="LinkedIn" target="_blank" className="hover:text-[#0077b5] transition-colors p-2 bg-white/5 rounded-full">
                     <Linkedin size={20} />
                 </a>
             </div>
