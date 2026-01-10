@@ -118,19 +118,44 @@ export const TextReveal = ({ text, className = "", delay = 0 }: { text: React.Re
 };
 
 // --- 4. REVEAL (PRO ANIMATION TIMING) ---
+
+// Singleton Observer Pattern to reduce overhead
+const listeners = new WeakMap<Element, () => void>();
+let observer: IntersectionObserver | null = null;
+
+const getObserver = () => {
+    if (!observer) {
+        observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const listener = listeners.get(entry.target);
+                    if (listener) {
+                        listener();
+                        observer?.unobserve(entry.target);
+                        listeners.delete(entry.target);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+    }
+    return observer;
+};
+
 export const Reveal = ({ children, className = "", delay = 0, mode = 'blur' }: any) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const observer = new IntersectionObserver(([entry]) => {
-            if (entry.isIntersecting) {
-                setIsVisible(true);
-                observer.unobserve(entry.target);
-            }
-        }, { threshold: 0.1 });
-        if (ref.current) observer.observe(ref.current);
-        return () => observer.disconnect();
+        if (!ref.current) return;
+
+        const currentRef = ref.current;
+        listeners.set(currentRef, () => setIsVisible(true));
+        getObserver().observe(currentRef);
+
+        return () => {
+            observer?.unobserve(currentRef);
+            listeners.delete(currentRef);
+        };
     }, []);
 
     // INCREASED DURATION TO 1.2s for "Geiler" feel
