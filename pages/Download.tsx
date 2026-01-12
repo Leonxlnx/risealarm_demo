@@ -96,21 +96,8 @@ export const DownloadPage = () => {
                   </div>
                </Reveal>
 
-               {/* iPad NFC Compatibility Notice */}
-               <Reveal delay={350} mode="blur">
-                  <div className="flex items-start gap-3 p-4 bg-amber-50 border border-amber-200 rounded-2xl max-w-md">
-                     <svg className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                     </svg>
-                     <div>
-                        <p className="text-sm font-semibold text-amber-800">iPad Compatibility</p>
-                        <p className="text-xs text-amber-700 mt-1">iPads without NFC are not supported. Rise Alarm requires NFC scanning, which is only available on iPhone models.</p>
-                     </div>
-                  </div>
-               </Reveal>
-
                {/* Waitlist Input */}
-               <Reveal delay={400} mode="blur">
+               <Reveal delay={200} mode="blur">
                   <div className="bg-white p-6 rounded-3xl border border-gray-200 shadow-lg max-w-md transition-all duration-300">
                      {status === 'success' ? (
                         <div className="flex flex-col items-center justify-center text-center py-4 animate-in fade-in duration-500">
@@ -152,6 +139,13 @@ export const DownloadPage = () => {
                         </>
                      )}
                   </div>
+               </Reveal>
+
+               {/* iPad NFC Note - subtle gray text */}
+               <Reveal delay={250} mode="blur">
+                  <p className="text-xs text-gray-400 mt-4 max-w-md">
+                     * iPads without NFC are not supported. Rise Alarm requires iPhone with NFC capability.
+                  </p>
                </Reveal>
             </div>
 
