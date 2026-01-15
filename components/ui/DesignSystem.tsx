@@ -194,7 +194,7 @@ export const ThePod = ({ scale = 1, className = "", highlight = 'none', priority
                 className={`relative z-10 w-full h-full transition-all duration-[1500ms] ease-[cubic-bezier(0.25,1,0.5,1)] group-hover:scale-105 group-hover:-translate-y-4 will-change-transform flex items-center justify-center`}
             >
                 <img
-                    src="/assets/RisePod.png"
+                    src="/assets/RisePod.webp"
                     alt="Rise Alarm Pod"
                     // Performance: Eager load above-fold image (Hero) for better LCP
                     loading={priority ? "eager" : "lazy"}

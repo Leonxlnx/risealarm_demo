@@ -61,13 +61,13 @@ export const AboutPage = () => {
                         name="Max"
                         title="Co-Founder"
                         linkedin="https://www.linkedin.com/in/maxgallinek/"
-                        imageSrc="/assets/max.png"
+                        imageSrc="/assets/max.webp"
                      />
                      <FounderCard
                         name="Dan"
                         title="Co-Founder"
                         linkedin="https://www.linkedin.com/in/dan-fishman/"
-                        imageSrc="/assets/dan.png"
+                        imageSrc="/assets/dan.webp"
                      />
                   </div>
                </ScrollReveal>

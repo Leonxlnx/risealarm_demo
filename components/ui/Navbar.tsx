@@ -46,7 +46,7 @@ export const Navbar = ({ cartCount }: { cartCount: number }) => {
           {/* Left: Logo */}
           <div className="flex-1 flex justify-start">
             <Link to="/" className="flex items-center gap-2 md:gap-3 cursor-pointer group shrink-0">
-              <img src="/assets/ralogo.png" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-12" />
+              <img src="/assets/ralogo.webp" alt="Rise Alarm Logo" className="h-6 md:h-8 w-auto object-contain transition-transform duration-500 group-hover:rotate-12" />
               <span className={`font-bold text-sm md:text-base tracking-tight text-[#111] transition-all duration-500 opacity-100 translate-x-0 ${isExpanded ? 'md:opacity-100 md:translate-x-0' : 'md:opacity-100 md:translate-x-0'}`}>
                 Rise
               </span>

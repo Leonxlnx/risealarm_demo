@@ -10,7 +10,7 @@ export const Hero = ({ onPreOrder }: { onPreOrder?: () => void }) => {
       {/* Background Image - CRISP */}
       <div className="hidden md:block absolute inset-0 z-0 transition-transform duration-[20s] ease-linear hover:scale-105">
         <img
-          src="/assets/herobgrise.png"
+          src="/assets/herobgrise.webp"
           alt="Rise Alarm Hero Background"
           className="w-full h-full object-cover"
           // @ts-ignore - fetchPriority is a valid React 19 / Modern HTML attribute
@@ -56,7 +56,7 @@ export const Hero = ({ onPreOrder }: { onPreOrder?: () => void }) => {
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-b from-[#FF6B00]/10 to-transparent rounded-3xl blur-2xl scale-110"></div>
                 <img
-                  src="/assets/RisePod.png"
+                  src="/assets/RisePod.webp"
                   alt="Rise Pod - NFC Alarm Device"
                   className="relative w-64 h-auto object-contain drop-shadow-2xl"
                   loading="eager"
