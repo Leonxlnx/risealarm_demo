@@ -54,7 +54,7 @@ export const DownloadPage = () => {
          <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center relative z-10">
             <div className="order-2 lg:order-1">
                <Reveal>
-                  <span className="text-[#FF6B00] font-mono uppercase tracking-widest text-xs font-bold mb-6 block">Coming Soon</span>
+                  <span className="text-[#FF6B00] font-mono uppercase tracking-widest text-xs font-bold mb-6 block">Available Now</span>
                </Reveal>
 
                <Reveal delay={100} mode="mask">
@@ -66,14 +66,19 @@ export const DownloadPage = () => {
 
                <Reveal delay={200} mode="blur">
                   <p className="text-lg md:text-xl text-gray-500 mb-12 max-w-lg leading-relaxed">
-                     The Rise Alarm App is currently in beta. It will launch on the iOS App Store shortly. Android support is coming later this year.
+                     Rise Alarm is now available on the App Store! Download now and transform your morning routine. Android support is coming later this year.
                   </p>
                </Reveal>
 
                <Reveal delay={300} mode="slide">
                   <div className="flex flex-col sm:flex-row gap-4 mb-12">
                      {/* Official Style Apple Button */}
-                     <button disabled className="bg-black text-white rounded-lg px-4 py-2 flex items-center gap-3 hover:bg-gray-800 transition-colors opacity-80 cursor-not-allowed shadow-xl">
+                     <a
+                        href="https://apps.apple.com/us/app/rise-tap-to-wake/id6755893286"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-black text-white rounded-lg px-4 py-2 flex items-center gap-3 hover:bg-gray-800 hover:scale-105 transition-all duration-300 shadow-xl"
+                     >
                         <svg viewBox="0 0 384 512" width="24" height="24" fill="currentColor">
                            <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 52.3-11.4 69.5-34.3z" />
                         </svg>
@@ -81,7 +86,7 @@ export const DownloadPage = () => {
                            <span className="text-[10px] font-medium">Download on the</span>
                            <span className="text-lg font-bold">App Store</span>
                         </div>
-                     </button>
+                     </a>
 
                      {/* Official Style Google Button - DISABLED / COMING SOON */}
                      <button disabled className="bg-gray-100 text-gray-400 rounded-lg px-4 py-2 flex items-center gap-3 cursor-not-allowed border border-gray-200">
