@@ -12,7 +12,7 @@ export const Hero = ({ onPreOrder }: { onPreOrder?: () => void }) => {
         <img
           src="/assets/herobgrise.webp"
           alt="Rise Alarm Hero Background"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover animate-fade-in"
           // @ts-ignore - fetchPriority is a valid React 19 / Modern HTML attribute
           fetchPriority="high"
           loading="eager"
@@ -58,7 +58,7 @@ export const Hero = ({ onPreOrder }: { onPreOrder?: () => void }) => {
                 <img
                   src="/assets/RisePod.webp"
                   alt="Rise Pod - NFC Alarm Device"
-                  className="relative w-64 h-auto object-contain drop-shadow-2xl"
+                  className="relative w-72 h-auto object-contain drop-shadow-2xl"
                   loading="eager"
                 />
               </div>
