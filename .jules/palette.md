@@ -5,3 +5,7 @@
 ## 2025-05-22 - Lazy Loading Mockups
 **Learning:** High-resolution device mockups in `PhoneMockup` can cause layout shifts or empty frames during tests if not handled carefully, though `loading="lazy"` improves initial LCP for the rest of the page.
 **Action:** When testing pages with heavy media, target interactive elements (buttons/inputs) rather than waiting for decorative images to fully load.
+
+## 2025-02-27 - Accessible Accordions
+**Learning:** Accordions must use semantic `<button>` triggers inside headings with `aria-expanded` and `aria-controls` pointing to the content region.
+**Action:** Refactor clickable `div`s into semantic buttons for all collapsible content.
